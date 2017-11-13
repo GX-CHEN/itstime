@@ -38,11 +38,11 @@ export default class AgendaScreen extends Component {
         const strTime = this.timeToString(time);
         if (!this.state.items[strTime]) {
           this.state.items[strTime] = [];
-          const numItems = 2;
-          for (let j = 0; j < numItems; j++) {
+          const availableEvents = ['Get Up', '1st Walk', '2nd Walk', 'Daily Work out']
+          for (let event of availableEvents) {
             this.state.items[strTime].push({
-              name: 'Item for ' + strTime,
-              height: Math.max(50, Math.floor(Math.random() * 150))
+              name: event + ' ' + strTime,
+              height: 50
             });
           }
         }
@@ -61,7 +61,7 @@ export default class AgendaScreen extends Component {
   renderItem(item) {
     const {navigate} = this.props.navigation
     return (
-      <View style={[styles.item, {height: item.height}]}><Text onPress={() => navigate('CustomSchedule')}>{item.name}</Text></View>
+      <View style={[styles.item, {height: item.height}]}><Text style={styles.text} onPress={() => navigate('CustomSchedule')}>{item.name}</Text></View>
     );
   }
 
@@ -94,5 +94,8 @@ const styles = StyleSheet.create({
     height: 15,
     flex: 1,
     paddingTop: 30
+  },
+  text: {
+    alignSelf: 'stretch'
   }
 });
