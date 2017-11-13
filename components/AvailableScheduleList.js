@@ -5,7 +5,9 @@ import {
   ListView,
   AsyncStorage,
   Text,
-  View
+  View,
+  TouchableHighlight,
+  Button
 } from 'react-native'
 
 
@@ -31,16 +33,28 @@ export default class AvailableScheduleList extends Component {
     const {navigate} = this.props.navigation
     const {availableSchedules, dataSource} = this.state
     return (
-      <View>
+      <View style={styles.container}>
+        <View style={styles.button}>
+          <Button
+            title="Add your own plan"
+            color="rgb(0, 122, 255)"
+            accessibilityLabel="Learn more about this purple button"
+            onPress={() => navigate('CustomSchedule')}
+          />
+        </View>
         <ListView
           enableEmptySections={true}
           dataSource={dataSource}
           renderRow={(schedule) => (
-            <Text onPress={() => navigate('Calendar', schedule)}>{schedule}</Text>
+            <View style={styles.button}>
+              <TouchableHighlight style={styles.row}
+                                  underlayColor="rgb(0, 122, 255)" onPress={() => navigate('Agenda', schedule)}>
+                <Text style={styles.text}>{schedule}</Text>
+              </TouchableHighlight>
+            </View>
           )}>
 
         </ListView>
-        <Text onPress={() => navigate('Calendar')}>Hello There!</Text>
       </View>
     )
   }
@@ -48,13 +62,26 @@ export default class AvailableScheduleList extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    alignSelf: 'center',
+    paddingTop: 30
   },
-  header: {
-    backgroundColor: 'lightgrey',
+  button: {
+    borderWidth: 1,
+    borderColor: 'rgba(0, 122, 255, 0.5)',
+    margin: 10,
+    borderRadius: 2,
+    alignSelf: 'stretch',
+    backgroundColor: 'rgba(255,255,255,.8)',
+  },
+  text: {
+    borderRadius: 10,
     padding: 10,
-    paddingTop: 20,
-    fontSize: 30,
     textAlign: 'center'
-  }
+  },
+  row: {
+    borderRadius: 2,
+    flexDirection: 'row',
+    alignItems: 'center'
+  },
 })

@@ -12,9 +12,9 @@ import {Calendar, CalendarList, Agenda} from 'react-native-calendars';
 
 export default class CalendarScreen extends Component {
 
-  static navigationOptions = {
-    title: 'Schedules on Calendar'
-  }
+  static navigationOptions = ({ navigation }) => ({
+    title: navigation.state.params
+  })
 
   constructor() {
     super()
