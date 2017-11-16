@@ -24,17 +24,40 @@ export default class CustomSchedule extends Component {
     })
     const availableEvents = ['Get Up', '1st Walk', '2nd Walk', 'Daily Work out']
     this.state = {
-      availableSchedules: availableEvents,
       dataSource: this.ds.cloneWithRows(availableEvents)
     }
   }
 
+  async componentDidMount() {
+    let AvailableScheduleEvents;
+    let CurrentScheduleName;
+
+    try {
+      let data = await AsyncStorage.getItem('@ScheduleDetails:AvailableScheduleEvents');
+      AvailableScheduleEvents = JSON.parse(data);
+    } catch (err) {
+      console.log(err);
+    }
+
+    try {
+      let data = await AsyncStorage.getItem('@ScheduleDetails:CurrentScheduleName');
+      CurrentScheduleName = JSON.parse(data);
+    } catch (err) {
+      console.error('Error loading CurrentScheduleName', err)
+    }
+
+    let currentScheduleEvents =  AvailableScheduleEvents[CurrentScheduleName];
+
+    this.setState({dataSource: this.ds.cloneWithRows(currentScheduleEvents)})
+  }
+
   render() {
     const {navigate} = this.props.navigation
-    const {availableEvents, dataSource} = this.state
+    const {dataSource} = this.state
     return (
       <View style={styles.container}>
-        <Text style={styles.text}>The following is the list of events in this schedule. You can click to edit existing events, or add new event</Text>
+        <Text style={styles.text}>The following is the list of events in this schedule. You can click to edit existing
+          events, or add new event</Text>
         <ListView
           enableEmptySections={true}
           dataSource={dataSource}
@@ -42,7 +65,7 @@ export default class CustomSchedule extends Component {
             <View style={styles.button}>
               <TouchableHighlight style={styles.row}
                                   underlayColor="rgb(0, 122, 255)" onPress={() => navigate('EventDetail', {schedule})}>
-                <Text style={styles.text}>{schedule}</Text>
+                <Text style={styles.text}>{schedule.name}</Text>
               </TouchableHighlight>
             </View>
           )}>

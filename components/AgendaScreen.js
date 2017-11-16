@@ -13,9 +13,10 @@ export default class AgendaScreen extends Component {
     this.state = {
       items: {},
       currentSchedule: this.props.navigation.state.params.schedule,
+      currentScheduleEvents: [],
       navigate: this.props.navigation.navigate
     };
-    
+
     AsyncStorage.setItem(
       '@ScheduleDetails:CurrentScheduleName',
       JSON.stringify(this.state.currentSchedule)
@@ -25,6 +26,21 @@ export default class AgendaScreen extends Component {
   static navigationOptions = ({navigation}) => ({
     title: navigation.state.params.schedule
   })
+
+  async componentDidMount() {
+    let AvailableScheduleEvents;
+
+    try {
+      let data = await AsyncStorage.getItem('@ScheduleDetails:AvailableScheduleEvents');
+      AvailableScheduleEvents = JSON.parse(data);
+    } catch (err) {
+      console.log(err);
+    }
+
+    this.setState({currentScheduleEvents: AvailableScheduleEvents[this.state.currentSchedule]});
+    console.log('inside agenda')
+
+  }
 
   render() {
     return (
@@ -53,11 +69,11 @@ export default class AgendaScreen extends Component {
         const strTime = this.timeToString(time);
         if (!this.state.items[strTime]) {
           this.state.items[strTime] = [];
-          const availableEvents = ['Get Up', '1st Walk', '2nd Walk', 'Daily Work out']
+          const availableEvents = this.state.currentScheduleEvents
           for (let event of availableEvents) {
             this.state.items[strTime].push({
-              name: event + ' ' + strTime,
-              height: 50
+              name: event.time + ' ' + event.name,
+              description: event.description
             });
           }
         }
@@ -75,8 +91,11 @@ export default class AgendaScreen extends Component {
 
   renderItem(item) {
     return (
-      <View style={[styles.item, {height: item.height}]}><Text style={styles.text}
-                                                               onPress={() => this.state.navigate('CustomSchedule')}>{item.name + this.state.currentSchedule}</Text></View>
+      <View style={[styles.item, {height: item.height}]}>
+        <Text style={styles.text}
+              onPress={() => this.state.navigate('CustomSchedule')}>{item.name}</Text>
+        <Text style={styles.description}>{item.description}</Text>
+      </View>
     );
   }
 
@@ -112,5 +131,10 @@ const styles = StyleSheet.create({
   },
   text: {
     alignSelf: 'stretch'
+  },
+  description: {
+    alignSelf: 'stretch',
+    color: 'gray',
+    fontSize: 10
   }
 });
