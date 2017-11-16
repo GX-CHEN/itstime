@@ -19,19 +19,43 @@ export default class AvailableScheduleList extends Component {
 
   constructor() {
     super()
+
+    AsyncStorage.setItem(
+      '@ScheduleDetails:CurrentScheduleName',
+      JSON.stringify("")
+    );
+
+    AsyncStorage.setItem(
+      '@ScheduleDetails:AvailableScheduleList',
+      JSON.stringify( ['Healthy Life Style', 'Productive Day', 'Early Bird Schedule', 'Night Owl Schedule'])
+    );
+
     this.ds = new ListView.DataSource({
       rowHasChanged: (r1, r2) => r1 !== r2
     })
-    const availableSchedules = ['Health Life', 'Weight Control', 'Gain Weight', 'Work out']
+
     this.state = {
-      availableSchedules,
-      dataSource: this.ds.cloneWithRows(availableSchedules)
+      dataSource: this.ds.cloneWithRows([])
+    }
+
+  }
+
+  async componentDidMount() {
+    try {
+      let data = await AsyncStorage.getItem('@ScheduleDetails:AvailableScheduleList');
+      if (data) {
+        this.setState({
+          dataSource: this.ds.cloneWithRows(JSON.parse(data))
+        });
+      }
+    } catch (err) {
+      console.error(err)
     }
   }
 
   render() {
     const {navigate} = this.props.navigation
-    const {availableSchedules, dataSource} = this.state
+    const {dataSource} = this.state
     return (
       <View style={styles.container}>
         <View style={styles.button}>
@@ -48,7 +72,7 @@ export default class AvailableScheduleList extends Component {
           renderRow={(schedule) => (
             <View style={styles.button}>
               <TouchableHighlight style={styles.row}
-                                  underlayColor="rgb(0, 122, 255)" onPress={() => navigate('Agenda', schedule)}>
+                                  underlayColor="rgb(0, 122, 255)" onPress={() => navigate('Agenda', {schedule})}>
                 <Text style={styles.text}>{schedule}</Text>
               </TouchableHighlight>
             </View>

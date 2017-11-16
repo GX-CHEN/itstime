@@ -41,7 +41,7 @@ export default class CustomSchedule extends Component {
           renderRow={(schedule) => (
             <View style={styles.button}>
               <TouchableHighlight style={styles.row}
-                                  underlayColor="rgb(0, 122, 255)" onPress={() => navigate('EventDetail', schedule)}>
+                                  underlayColor="rgb(0, 122, 255)" onPress={() => navigate('EventDetail', {schedule})}>
                 <Text style={styles.text}>{schedule}</Text>
               </TouchableHighlight>
             </View>

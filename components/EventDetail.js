@@ -4,6 +4,7 @@ import {
   StyleSheet,
   ListView,
   AsyncStorage,
+  Button,
   Text,
   TextInput,
   View
@@ -27,6 +28,7 @@ export default class EventDetail extends Component {
   }
 
   render() {
+    const {navigate} = this.props.navigation
     return (
       <View style={styles.container}>
         <Text style={styles.text}>Start Time</Text>
@@ -34,13 +36,6 @@ export default class EventDetail extends Component {
           style={{height: 40}}
           onChangeText={(startTime) => this.setState({startTime})}
           value={this.state.startTime}
-        />
-
-        <Text style={styles.text}>End Time</Text>
-        <TextInput
-          style={{height: 40}}
-          onChangeText={(endTime) => this.setState({endTime})}
-          value={this.state.endTime}
         />
 
         <Text style={styles.text}>Event Name</Text>
@@ -56,7 +51,25 @@ export default class EventDetail extends Component {
           onChangeText={(details) => this.setState({details})}
           value={this.state.details}
         />
+
+        <View style={styles.button}>
+          <Button
+            title="Submit Change"
+            color="rgb(0, 122, 255)"
+            onPress={() => navigate('CustomSchedule')}
+          />
+        </View>
+
+
+        <View style={styles.button}>
+          <Button
+            title="Delete Event"
+            color="rgb(255, 122, 0)"
+            onPress={() => navigate('CustomSchedule')}
+          />
+        </View>
       </View>
+
     );
   }
 }

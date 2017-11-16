@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 import {
   Text,
   View,
-  StyleSheet
+  StyleSheet,
+  AsyncStorage
 } from 'react-native';
 import {Agenda} from 'react-native-calendars';
 
@@ -10,12 +11,19 @@ export default class AgendaScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      items: {}
+      items: {},
+      currentSchedule: this.props.navigation.state.params.schedule,
+      navigate: this.props.navigation.navigate
     };
+    
+    AsyncStorage.setItem(
+      '@ScheduleDetails:CurrentScheduleName',
+      JSON.stringify(this.state.currentSchedule)
+    );
   }
 
-  static navigationOptions = ({ navigation }) => ({
-    title: navigation.state.params
+  static navigationOptions = ({navigation}) => ({
+    title: navigation.state.params.schedule
   })
 
   render() {
@@ -31,7 +39,14 @@ export default class AgendaScreen extends Component {
     );
   }
 
-  loadItems(day) {
+  async loadItems(day) {
+    try {
+      let data = await AsyncStorage.getItem('@ScheduleDetails:CurrentScheduleName');
+      console.log('currentScheduleName ' + JSON.parse(data))
+    } catch (err) {
+      console.error('Error loading CurrentScheduleName', err)
+    }
+
     setTimeout(() => {
       for (let i = -15; i < 85; i++) {
         const time = day.timestamp + i * 24 * 60 * 60 * 1000;
@@ -59,9 +74,9 @@ export default class AgendaScreen extends Component {
   }
 
   renderItem(item) {
-    const {navigate} = this.props.navigation
     return (
-      <View style={[styles.item, {height: item.height}]}><Text style={styles.text} onPress={() => navigate('CustomSchedule')}>{item.name}</Text></View>
+      <View style={[styles.item, {height: item.height}]}><Text style={styles.text}
+                                                               onPress={() => this.state.navigate('CustomSchedule')}>{item.name + this.state.currentSchedule}</Text></View>
     );
   }
 
