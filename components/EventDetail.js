@@ -124,7 +124,6 @@ export default class EventDetail extends Component {
           />
         </View>
 
-
         <View style={styles.button}>
           <Button
             title="Delete Event"

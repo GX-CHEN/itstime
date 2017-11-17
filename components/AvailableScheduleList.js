@@ -84,11 +84,81 @@ export default class AvailableScheduleList extends Component {
                 time: '23:00',
                 description: 'Your brain needs at least 7H of sleep every night.'
               }
+            ],
+            'Early Birds Schedule': [
+              {
+                name: 'Eat Breakfast',
+                time: '6:00',
+                description: 'The best time is within 30 minutes of waking up'
+              }, {
+                name: 'Exercise',
+                time: '6:30',
+                description: 'It can be easier to stick with a morning exercise routine because the timing is less likely to conflict with other responsibilities'
+              }, {
+                name: 'Coffee Break',
+                time: '10:00',
+                description: 'Aim for mid morning to optimize productivity. Coffee is most effective between 9am and 10:30am when cortisol (a natural hormone that regulates energy) levels are lower.'
+              }, {
+                name: 'Eat lunch',
+                time: '12:00',
+                description: 'Take a break at lunch and get away from your work space instead of eating at your computer.'
+              }, {
+                name: 'Eat a snack',
+                time: '15:00',
+                description: 'Make sure you don\'t have too long of a gap between lunch and dinner.'
+              }, {
+                name: 'Eat dinner',
+                time: '18:00',
+                description: 'Try to eat at least three hours before going to bed to maintain a healthy metabolism'
+              }, {
+                name: 'Relax and Pursue interests',
+                time: '20:00',
+                description: 'If you have a side project or artistic hobby, the late evening is a good time for creativity, as fatigue lowers inhibitions and opens you up to unusual ideas.'
+              },{
+                name: 'Going to sleep',
+                time: '21:30',
+                description: 'Adults should aim to get between seven and nine hours of sleep each night.'
+              }
+            ],
+            'Night Owls Schedule': [
+              {
+                name: 'Eat Breakfast',
+                time: '7:00',
+                description: 'The best time is within 30 minutes of waking up'
+              }, {
+                name: 'Coffee Break',
+                time: '10:00',
+                description: 'Aim for mid morning to optimize productivity. Coffee is most effective between 9am and 10:30am when cortisol (a natural hormone that regulates energy) levels are lower.'
+              }, {
+                name: 'Eat Lunch',
+                time: '12:00',
+                description: 'Take a break at lunch and get away from your work space instead of eating at your computer.'
+              }, {
+                name: 'Take a break',
+                time: '15:00',
+                description: 'Make time to refresh for 10 to 30 minutes for the rest of the afternoon.'
+              }, {
+                name: 'Exercise',
+                time: '18:00',
+                description: 'This is when reaction time is quickest, blood pressure and heart rate are lowest, and body temperature is almost at its peak. Be sure to eat a snack before the workout if you haven\'t eaten since lunch.'
+              }, {
+                name: 'Eat dinner',
+                time: '20:30',
+                description: 'Try to eat at least three hours before going to bed to maintain a healthy metabolism'
+              }, {
+                name: 'Relax and Pursue interests',
+                time: '21:30',
+                description: 'If you have a side project or artistic hobby, the late evening is a good time for creativity, as fatigue lowers inhibitions and opens you up to unusual ideas.'
+              },{
+                name: 'Going to sleep',
+                time: '23:30',
+                description: 'Adults should aim to get between seven and nine hours of sleep each night.'
+              }
             ]
           }
         )
       );
-    }
+   }
 
     this.ds = new ListView.DataSource({
       rowHasChanged: (r1, r2) => r1 !== r2
@@ -109,7 +179,7 @@ export default class AvailableScheduleList extends Component {
         });
       } else {
         this.setState({
-          dataSource: this.ds.cloneWithRows(['Healthy Life Style', 'Productive Day', 'Early Bird Schedule', 'Night Owl Schedule'])
+          dataSource: this.ds.cloneWithRows(['Healthy Life Style', 'Productive Day', 'Early Birds Schedule', 'Night Owls Schedule'])
         });
       }
     } catch (err) {
