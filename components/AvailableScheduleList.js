@@ -20,13 +20,25 @@ export default class AvailableScheduleList extends Component {
   constructor() {
     super()
 
-    AsyncStorage.setItem(
+    this.ds = new ListView.DataSource({
+      rowHasChanged: (r1, r2) => r1 !== r2
+    })
+
+    this.state = {
+      dataSource: this.ds.cloneWithRows([])
+    }
+
+  }
+
+  async componentDidMount() {
+
+    await AsyncStorage.setItem(
       '@ScheduleDetails:CurrentScheduleName',
       JSON.stringify("")
     );
 
-    if (!AsyncStorage.getItem('@ScheduleDetails:AvailableScheduleEvents')) {
-      AsyncStorage.setItem(
+    if (!await AsyncStorage.getItem('@ScheduleDetails:AvailableScheduleEvents')) {
+      await AsyncStorage.setItem(
         '@ScheduleDetails:AvailableScheduleEvents',
         JSON.stringify(
           {
@@ -158,19 +170,8 @@ export default class AvailableScheduleList extends Component {
           }
         )
       );
-   }
-
-    this.ds = new ListView.DataSource({
-      rowHasChanged: (r1, r2) => r1 !== r2
-    })
-
-    this.state = {
-      dataSource: this.ds.cloneWithRows([])
     }
 
-  }
-
-  async componentDidMount() {
     try {
       let data = await AsyncStorage.getItem('@ScheduleDetails:AvailableScheduleList');
       if (data) {
