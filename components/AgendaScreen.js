@@ -16,11 +16,6 @@ export default class AgendaScreen extends Component {
       currentScheduleEvents: [],
       navigate: this.props.navigation.navigate
     };
-
-    AsyncStorage.setItem(
-      '@ScheduleDetails:CurrentScheduleName',
-      JSON.stringify(this.state.currentSchedule)
-    );
   }
 
   static navigationOptions = ({navigation}) => ({
@@ -28,6 +23,12 @@ export default class AgendaScreen extends Component {
   })
 
   async componentDidMount() {
+
+    await AsyncStorage.setItem(
+      '@ScheduleDetails:CurrentScheduleName',
+      JSON.stringify(this.state.currentSchedule)
+    );
+
     let AvailableScheduleEvents;
 
     try {

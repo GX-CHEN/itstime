@@ -20,7 +20,7 @@ export default class EventDetail extends Component {
   constructor(props) {
     super(props);
     const {params} = this.props.navigation.state
-    console.log(params.id)
+
     this.state = {
       id: params.id,
       time: params.schedule.time,
@@ -56,7 +56,7 @@ export default class EventDetail extends Component {
     this.setState({availableScheduleEvents, currentScheduleEvents, currentScheduleName})
   }
 
-  submitChange() {
+  async submitChange() {
     let updatedEntry = {
       time: this.state.time,
       name: this.state.name,
@@ -68,21 +68,21 @@ export default class EventDetail extends Component {
     let updatedAvailableScheduleEvents = this.state.availableScheduleEvents
     updatedAvailableScheduleEvents[this.state.currentScheduleName] = updatedScheduleEvents
 
-    AsyncStorage.setItem(
+    await AsyncStorage.setItem(
       '@ScheduleDetails:AvailableScheduleEvents',
       JSON.stringify(updatedAvailableScheduleEvents))
 
     this.state.navigate("Agenda", {schedule: this.state.currentScheduleName})
   }
 
-  deleteEvent() {
+  async deleteEvent() {
     let updatedScheduleEvents = this.state.currentScheduleEvents
     updatedScheduleEvents.splice(this.state.id, 1)
 
     let updatedAvailableScheduleEvents = this.state.availableScheduleEvents
     updatedAvailableScheduleEvents[this.state.currentScheduleName] = updatedScheduleEvents
 
-    AsyncStorage.setItem(
+    await AsyncStorage.setItem(
       '@ScheduleDetails:AvailableScheduleEvents',
       JSON.stringify(updatedAvailableScheduleEvents))
 
@@ -163,7 +163,7 @@ const styles = StyleSheet.create({
     fontSize:15,
     borderWidth: (Platform.OS === 'ios') ? 1 : 0,
     borderRadius: 2,
-    borderColor: 'rgba(125, 125, 125, 0.5)',
+    borderColor: 'rgba(125, 125, 125, 0.3)',
     padding: (Platform.OS === 'ios') ? 10 : 0,
   }
 })
