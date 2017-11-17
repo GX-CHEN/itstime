@@ -55,12 +55,6 @@ export default class AgendaScreen extends Component {
   }
 
   async loadItems(day) {
-    try {
-      let data = await AsyncStorage.getItem('@ScheduleDetails:CurrentScheduleName');
-      console.log('currentScheduleName ' + JSON.parse(data))
-    } catch (err) {
-      console.error('Error loading CurrentScheduleName', err)
-    }
 
     setTimeout(() => {
       for (let i = -7; i < 30; i++) {

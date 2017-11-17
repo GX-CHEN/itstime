@@ -2,7 +2,6 @@ import React, {Component} from 'react'
 import {
   Platform,
   StyleSheet,
-  ListView,
   AsyncStorage,
   Button,
   Text,

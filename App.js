@@ -1,4 +1,3 @@
-import React from 'react';
 import {StackNavigator} from 'react-navigation'
 
 import CalendarScreen from './components/CalendarScreen'
@@ -11,12 +10,8 @@ const App = StackNavigator({
   Home: {screen: AvailableScheduleList},
   Calendar: {screen: CalendarScreen},
   Agenda: {screen: AgendaScreen},
-  CustomSchedule: {screen: CustomSchedule },
+  CustomSchedule: {screen: CustomSchedule},
   EventDetail: {screen: EventDetail}
 })
 
 export default App
-
-
-
-

@@ -1,18 +1,15 @@
 import React, {Component} from 'react'
 import {
-  Platform,
   StyleSheet,
-  ListView,
-  AsyncStorage,
   Text,
   View
 } from 'react-native'
 
-import {Calendar, CalendarList, Agenda} from 'react-native-calendars';
+import {Calendar} from 'react-native-calendars';
 
 export default class CalendarScreen extends Component {
 
-  static navigationOptions = ({ navigation }) => ({
+  static navigationOptions = ({navigation}) => ({
     title: navigation.state.params.schedule
   })
 
@@ -41,7 +38,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   calendar: {
     borderTopWidth: 1,
@@ -55,10 +52,6 @@ const styles = StyleSheet.create({
     borderColor: '#bbb',
     padding: 10,
     backgroundColor: '#eee'
-  },
-  container: {
-    flex: 1,
-    backgroundColor: 'gray'
   },
   header: {
     height: 50,
