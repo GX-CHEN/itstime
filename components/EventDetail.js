@@ -19,11 +19,12 @@ export default class EventDetail extends Component {
 
   constructor(props) {
     super(props);
+    const {params} = this.props.navigation.state
+    console.log(params)
     this.state = {
-      startTime: "",
-      endTime: "",
-      eventName: "",
-      details: ""
+      time: params.schedule.time,
+      eventName:  params.schedule.name,
+      description: params.schedule.description
     };
   }
 
@@ -34,8 +35,8 @@ export default class EventDetail extends Component {
         <Text style={styles.text}>Start Time</Text>
         <TextInput
           style={{height: 40}}
-          onChangeText={(startTime) => this.setState({startTime})}
-          value={this.state.startTime}
+          onChangeText={(time) => this.setState({time})}
+          value={this.state.time}
         />
 
         <Text style={styles.text}>Event Name</Text>
@@ -45,11 +46,12 @@ export default class EventDetail extends Component {
           value={this.state.eventName}
         />
 
-        <Text style={styles.text}>Details</Text>
+        <Text style={styles.text}>Description</Text>
         <TextInput
-          style={{height: 40}}
-          onChangeText={(details) => this.setState({details})}
-          value={this.state.details}
+          style={{height: 200}}
+          multiline={true}
+          onChangeText={(description) => this.setState({description})}
+          value={this.state.description}
         />
 
         <View style={styles.button}>
