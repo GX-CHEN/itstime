@@ -46,7 +46,7 @@ export default class CustomSchedule extends Component {
       console.error('Error loading CurrentScheduleName', err)
     }
 
-    let currentScheduleEvents =  AvailableScheduleEvents[CurrentScheduleName];
+    let currentScheduleEvents = AvailableScheduleEvents[CurrentScheduleName];
 
     this.setState({dataSource: this.ds.cloneWithRows(currentScheduleEvents)})
   }
@@ -61,10 +61,11 @@ export default class CustomSchedule extends Component {
         <ListView
           enableEmptySections={true}
           dataSource={dataSource}
-          renderRow={(schedule) => (
+          renderRow={(schedule, sectionId, rowId) => (
             <View style={styles.button}>
               <TouchableHighlight style={styles.row}
-                                  underlayColor="rgb(0, 122, 255)" onPress={() => navigate('EventDetail', {schedule})}>
+                                  underlayColor="rgb(0, 122, 255)"
+                                  onPress={() => navigate('EventDetail', {schedule: schedule, id: rowId})}>
                 <Text style={styles.text}>{schedule.name}</Text>
               </TouchableHighlight>
             </View>

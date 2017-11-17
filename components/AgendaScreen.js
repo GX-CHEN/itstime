@@ -38,8 +38,6 @@ export default class AgendaScreen extends Component {
     }
 
     this.setState({currentScheduleEvents: AvailableScheduleEvents[this.state.currentSchedule]});
-    console.log('inside agenda')
-
   }
 
   render() {
@@ -64,7 +62,7 @@ export default class AgendaScreen extends Component {
     }
 
     setTimeout(() => {
-      for (let i = -15; i < 85; i++) {
+      for (let i = -7; i < 30; i++) {
         const time = day.timestamp + i * 24 * 60 * 60 * 1000;
         const strTime = this.timeToString(time);
         if (!this.state.items[strTime]) {
