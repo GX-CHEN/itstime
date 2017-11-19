@@ -1,13 +1,11 @@
 import React, {Component} from 'react'
 import {
-  Platform,
   StyleSheet,
   AsyncStorage,
-  Button,
-  Text,
-  TextInput,
   View
 } from 'react-native'
+
+import {Button, FormLabel, FormInput} from 'react-native-elements';
 
 
 export default class EventDetail extends Component {
@@ -92,25 +90,27 @@ export default class EventDetail extends Component {
 
     return (
       <View style={styles.container}>
-        <Text style={styles.text}>Start Time</Text>
-        <TextInput
-          style={[{height: 40}, styles.input]}
+        <FormLabel>Start Time</FormLabel>
+        <FormInput
+          containerStyle={{margin: 10}}
+          inputStyle={{width: '100%', color: 'black'}}
           onChangeText={(time) => this.setState({time})}
           value={this.state.time}
         />
 
-        <Text style={styles.text}>Event Name</Text>
-        <TextInput
-          style={[{height: 40}, styles.input]}
+        <FormLabel>Event Name</FormLabel>
+        <FormInput
+          containerStyle={{margin: 10}}
+          inputStyle={{width: '100%', color: 'black'}}
           onChangeText={(name) => this.setState({name})}
           value={this.state.name}
         />
 
-        <Text style={styles.text}>Description</Text>
-        <TextInput
-          style={[{height: 120}, styles.input]}
+        <FormLabel>Description</FormLabel>
+        <FormInput
+          containerStyle={{margin: 10}}
+          inputStyle={{width: '100%', color: 'black', marginBottom: 10}}
           multiline={true}
-          numberOfLines={3}
           onChangeText={(description) => this.setState({description})}
           value={this.state.description}
         />
@@ -118,7 +118,7 @@ export default class EventDetail extends Component {
         <View style={styles.button}>
           <Button
             title="Submit Change"
-            color="rgb(0, 122, 255)"
+            backgroundColor="rgb(0, 122, 255)"
             onPress={() => this.submitChange()}
           />
         </View>
@@ -126,7 +126,7 @@ export default class EventDetail extends Component {
         <View style={styles.button}>
           <Button
             title="Delete Event"
-            color="rgb(255, 122, 0)"
+            backgroundColor="rgb(255, 122, 0)"
             onPress={() => this.deleteEvent()}
           />
         </View>
@@ -137,32 +137,8 @@ export default class EventDetail extends Component {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 30
-  },
   button: {
-    borderWidth: 1,
-    borderColor: 'rgba(0, 122, 255, 0.5)',
-    margin: 10,
-    borderRadius: 2,
-    alignSelf: 'stretch',
-    backgroundColor: 'rgba(255,255,255,.8)',
-  },
-  text: {
-    marginTop: 25,
-    color: 'rgba(0,0,0,0.5)'
-  },
-  row: {
-    borderRadius: 2,
-    flexDirection: 'row',
-    alignItems: 'center'
-  },
-  input: {
-    fontSize:15,
-    borderWidth: (Platform.OS === 'ios') ? 1 : 0,
-    borderRadius: 2,
-    borderColor: 'rgba(125, 125, 125, 0.3)',
-    padding: (Platform.OS === 'ios') ? 10 : 0,
+    marginBottom: 20,
+    alignSelf: 'stretch'
   }
 })

@@ -5,9 +5,10 @@ import {
   AsyncStorage,
   Text,
   View,
-  TouchableHighlight,
-  Button
+  TouchableHighlight
 } from 'react-native'
+
+import { Button } from 'react-native-elements'
 
 
 export default class CustomSchedule extends Component {
@@ -55,26 +56,27 @@ export default class CustomSchedule extends Component {
     const {dataSource} = this.state
     return (
       <View style={styles.container}>
-        <Text style={styles.text}>The following is the list of events in this schedule. You can click to edit existing
+        <Text style={styles.instructions}>The following is the list of events in this schedule. You can click to edit existing
           events, or add new event</Text>
         <ListView
           enableEmptySections={true}
           dataSource={dataSource}
           renderRow={(schedule, sectionId, rowId) => (
             <View style={styles.button}>
-              <TouchableHighlight style={styles.row}
-                                  underlayColor="rgb(0, 122, 255)"
-                                  onPress={() => navigate('EventDetail', {schedule: schedule, id: rowId})}>
-                <Text style={styles.text}>{schedule.name}</Text>
-              </TouchableHighlight>
+              <Button
+                title={schedule.name}
+                backgroundColor='#9ccc65'
+                fontWeight='bold'
+                onPress={() => navigate('EventDetail', {schedule: schedule, id: rowId})}
+              />
             </View>
           )}>
         </ListView>
         <View style={styles.button}>
           <Button
             title="Add new event"
-            color="rgb(0, 122, 255)"
-            accessibilityLabel="Learn more about this purple button"
+            backgroundColor='#4527a0'
+            fontWeight='bold'
             onPress={() => navigate('EventDetail')}
           />
         </View>
@@ -86,25 +88,13 @@ export default class CustomSchedule extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignSelf: 'center',
-    paddingTop: 30
+    alignSelf: 'stretch'
   },
   button: {
-    borderWidth: 1,
-    borderColor: 'rgba(0, 122, 255, 0.5)',
-    margin: 10,
-    borderRadius: 2,
-    alignSelf: 'stretch',
-    backgroundColor: 'rgba(255,255,255,.8)',
+    marginBottom: 15,
+    alignSelf: 'stretch'
   },
-  text: {
-    borderRadius: 10,
-    padding: 10,
-    textAlign: 'center'
-  },
-  row: {
-    borderRadius: 2,
-    flexDirection: 'row',
-    alignItems: 'center'
-  },
+  instructions: {
+    margin: 15
+  }
 })

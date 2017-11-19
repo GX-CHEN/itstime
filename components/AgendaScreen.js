@@ -123,7 +123,8 @@ const styles = StyleSheet.create({
     paddingTop: 30
   },
   text: {
-    alignSelf: 'stretch'
+    alignSelf: 'stretch',
+    color: '#1976d2'
   },
   description: {
     alignSelf: 'stretch',

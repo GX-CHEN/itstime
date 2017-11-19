@@ -1,15 +1,12 @@
 import React, {Component} from 'react'
 import {
-  Platform,
   StyleSheet,
   ListView,
   AsyncStorage,
-  Text,
   View,
-  TouchableHighlight,
-  Button
 } from 'react-native'
 
+import { Button } from 'react-native-elements'
 
 export default class AvailableScheduleList extends Component {
 
@@ -193,25 +190,32 @@ export default class AvailableScheduleList extends Component {
     const {dataSource} = this.state
     return (
       <View style={styles.container}>
-        <View style={(Platform.OS === 'ios') ? "" : styles.button}>
+        <View>
           <Button
-            title="Add your own plan"
-            color="rgb(0, 122, 255)"
-            accessibilityLabel="Learn more about this purple button"
+            large
+            style={styles.button}
+            icon={{name: 'add'}}
+            backgroundColor={'#4db6ac'}
+            fontWeight='bold'
+            title='Add Your Own Plan'
             onPress={() => {
             }}
           />
         </View>
-        <ListView
-          enableEmptySections={true}
-          dataSource={dataSource}
-          renderRow={(schedule) => (
-            <View style={styles.button}>
-              <TouchableHighlight style={styles.row}
-                                  underlayColor="rgb(0, 122, 255)" onPress={() => navigate('Agenda', {schedule})}>
-                <Text style={styles.text}>{schedule}</Text>
-              </TouchableHighlight>
-            </View>
+          <ListView
+            enableEmptySections={true}
+            dataSource={dataSource}
+            renderRow={(schedule) => (
+              <View >
+                <Button
+                  large
+                  style={styles.button}
+                  backgroundColor={'#42a5f5'}
+                  fontWeight='bold'
+                  title={schedule}
+                  onPress={() => navigate('Agenda', {schedule})}
+                />
+              </View>
           )}>
 
         </ListView>
@@ -222,26 +226,17 @@ export default class AvailableScheduleList extends Component {
 
 const styles = StyleSheet.create({
   container: {
+    display: 'flex',
     flex: 1,
-    alignSelf: 'center',
-    paddingTop: 30
+    alignSelf: 'stretch',
+    paddingTop: 30,
+    justifyContent:'center'
   },
   button: {
     borderWidth: 1,
-    borderColor: 'rgba(0, 122, 255, 0.5)',
-    margin: 10,
+    borderColor: 'white',
+    marginTop: 15,
     borderRadius: 2,
-    alignSelf: 'stretch',
-    backgroundColor: 'rgba(255,255,255,.8)',
-  },
-  text: {
-    borderRadius: 10,
-    padding: 10,
-    textAlign: 'center'
-  },
-  row: {
-    borderRadius: 2,
-    flexDirection: 'row',
-    alignItems: 'center'
-  },
+    alignSelf: 'stretch'
+  }
 })
