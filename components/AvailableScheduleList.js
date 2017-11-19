@@ -6,12 +6,15 @@ import {
   View,
 } from 'react-native'
 
-import { Button } from 'react-native-elements'
+import { Button, Header } from 'react-native-elements'
 
 export default class AvailableScheduleList extends Component {
 
-  static navigationOptions = {
-    title: 'Pre-set Schedules'
+  static navigationOptions = ({navigation}) => {
+    return {
+      header: <Header
+      centerComponent={{ text: 'Pre-set Schedules', style: { color: '#fff', fontWeight: 'bold', fontSize: 20 } }}
+    />}
   }
 
   constructor() {
