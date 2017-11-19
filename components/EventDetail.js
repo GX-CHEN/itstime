@@ -89,11 +89,11 @@ export default class EventDetail extends Component {
   render() {
 
     return (
-      <View style={styles.container}>
+      <View>
         <FormLabel>Start Time</FormLabel>
         <FormInput
           containerStyle={{margin: 10}}
-          inputStyle={{width: '100%', color: 'black'}}
+          inputStyle={{width: '100%', color: 'rgba(0,0,0,0.6)'}}
           onChangeText={(time) => this.setState({time})}
           value={this.state.time}
         />
@@ -101,7 +101,7 @@ export default class EventDetail extends Component {
         <FormLabel>Event Name</FormLabel>
         <FormInput
           containerStyle={{margin: 10}}
-          inputStyle={{width: '100%', color: 'black'}}
+          inputStyle={{width: '100%', color: 'rgba(0,0,0,0.6)'}}
           onChangeText={(name) => this.setState({name})}
           value={this.state.name}
         />
@@ -109,7 +109,7 @@ export default class EventDetail extends Component {
         <FormLabel>Description</FormLabel>
         <FormInput
           containerStyle={{margin: 10}}
-          inputStyle={{width: '100%', color: 'black', marginBottom: 10}}
+          inputStyle={{width: '100%', color: 'rgba(0,0,0,0.6)', paddingBottom: 10}}
           multiline={true}
           onChangeText={(description) => this.setState({description})}
           value={this.state.description}
@@ -136,9 +136,10 @@ export default class EventDetail extends Component {
   }
 }
 
+
 const styles = StyleSheet.create({
   button: {
-    marginBottom: 20,
+    marginBottom: 15,
     alignSelf: 'stretch'
   }
 })

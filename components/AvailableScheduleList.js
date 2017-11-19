@@ -206,7 +206,7 @@ export default class AvailableScheduleList extends Component {
             enableEmptySections={true}
             dataSource={dataSource}
             renderRow={(schedule) => (
-              <View >
+              <View style={styles.buttonWrapper}>
                 <Button
                   large
                   style={styles.button}
@@ -232,10 +232,12 @@ const styles = StyleSheet.create({
     paddingTop: 30,
     justifyContent:'center'
   },
+  buttonWrapper: {
+    marginTop: 15
+  },
   button: {
     borderWidth: 1,
     borderColor: 'white',
-    marginTop: 15,
     borderRadius: 2,
     alignSelf: 'stretch'
   }

@@ -56,7 +56,7 @@ export default class CustomSchedule extends Component {
     const {dataSource} = this.state
     return (
       <View style={styles.container}>
-        <Text style={styles.instructions}>The following is the list of events in this schedule. You can click to edit existing
+        <Text style={styles.instructions}>The following is the list of events in this schedule. /n You can click to edit existing
           events, or add new event</Text>
         <ListView
           enableEmptySections={true}
@@ -65,7 +65,7 @@ export default class CustomSchedule extends Component {
             <View style={styles.button}>
               <Button
                 title={schedule.name}
-                backgroundColor='#9ccc65'
+                backgroundColor='#42a5f5'
                 fontWeight='bold'
                 onPress={() => navigate('EventDetail', {schedule: schedule, id: rowId})}
               />
@@ -77,7 +77,6 @@ export default class CustomSchedule extends Component {
             title="Add new event"
             backgroundColor='#4527a0'
             fontWeight='bold'
-            onPress={() => navigate('EventDetail')}
           />
         </View>
       </View>
