@@ -1,11 +1,12 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import {
   Text,
   View,
   StyleSheet,
   AsyncStorage
 } from 'react-native';
-import {Agenda} from 'react-native-calendars';
+import { Agenda } from 'react-native-calendars';
+import { findItemByName } from '../model/utils'
 
 export default class AgendaScreen extends Component {
   constructor(props) {
@@ -18,7 +19,7 @@ export default class AgendaScreen extends Component {
     };
   }
 
-  static navigationOptions = ({navigation}) => ({
+  static navigationOptions = ({ navigation }) => ({
     title: navigation.state.params.schedule
   })
 
@@ -38,7 +39,9 @@ export default class AgendaScreen extends Component {
       console.log(err);
     }
 
-    this.setState({currentScheduleEvents: AvailableScheduleEvents[this.state.currentSchedule]});
+    console.log("AvailableScheduleEvents", AvailableScheduleEvents, this.state.currentSchedule)
+    console.log(findItemByName(this.state.currentSchedule, AvailableScheduleEvents))
+    this.setState({ currentScheduleEvents: findItemByName(this.state.currentSchedule, AvailableScheduleEvents) });
   }
 
   render() {
@@ -84,9 +87,9 @@ export default class AgendaScreen extends Component {
 
   renderItem(item) {
     return (
-      <View style={[styles.item, {height: item.height}]}>
+      <View style={[styles.item, { height: item.height }]}>
         <Text style={styles.text}
-              onPress={() => this.state.navigate('CustomSchedule')}>{item.name}</Text>
+          onPress={() => this.state.navigate('CustomSchedule')}>{item.name}</Text>
         <Text style={styles.description}>{item.description}</Text>
       </View>
     );

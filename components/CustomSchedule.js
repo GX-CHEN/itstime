@@ -9,6 +9,7 @@ import {
 } from 'react-native'
 
 import { Button } from 'react-native-elements'
+import {findItemByName} from '../model/utils'
 
 
 export default class CustomSchedule extends Component {
@@ -46,7 +47,7 @@ export default class CustomSchedule extends Component {
       console.error('Error loading CurrentScheduleName', err)
     }
 
-    let currentScheduleEvents = AvailableScheduleEvents[CurrentScheduleName];
+    let currentScheduleEvents = findItemByName(CurrentScheduleName, AvailableScheduleEvents) ;
 
     this.setState({dataSource: this.ds.cloneWithRows(currentScheduleEvents)})
   }

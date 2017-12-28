@@ -3,9 +3,10 @@ import {
   StyleSheet,
   AsyncStorage,
   View
-} from 'react-native'
+} from 'react-native';
 
 import {Button, FormLabel, FormInput} from 'react-native-elements';
+import {findItemByName, updateItemByName} from '../model/utils';
 
 
 export default class EventDetail extends Component {
@@ -49,7 +50,7 @@ export default class EventDetail extends Component {
       console.error('Error loading CurrentScheduleName', err)
     }
 
-    let currentScheduleEvents = availableScheduleEvents[currentScheduleName];
+    let currentScheduleEvents = findItemByName(currentScheduleName, availableScheduleEvents);
     this.setState({availableScheduleEvents, currentScheduleEvents, currentScheduleName})
   }
 
@@ -63,7 +64,7 @@ export default class EventDetail extends Component {
     updatedScheduleEvents[this.state.id] = updatedEntry
 
     let updatedAvailableScheduleEvents = this.state.availableScheduleEvents
-    updatedAvailableScheduleEvents[this.state.currentScheduleName] = updatedScheduleEvents
+    updatedAvailableScheduleEvents = updateItemByName(this.state.currentScheduleName, updatedScheduleEvents, updatedAvailableScheduleEvents)
 
     await AsyncStorage.setItem(
       '@ScheduleDetails:AvailableScheduleEvents',
@@ -77,7 +78,7 @@ export default class EventDetail extends Component {
     updatedScheduleEvents.splice(this.state.id, 1)
 
     let updatedAvailableScheduleEvents = this.state.availableScheduleEvents
-    updatedAvailableScheduleEvents[this.state.currentScheduleName] = updatedScheduleEvents
+    updatedAvailableScheduleEvents = updateItemByName(this.state.currentScheduleName, updatedScheduleEvents, updatedAvailableScheduleEvents)
 
     await AsyncStorage.setItem(
       '@ScheduleDetails:AvailableScheduleEvents',
