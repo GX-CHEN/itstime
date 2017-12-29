@@ -39,8 +39,6 @@ export default class AgendaScreen extends Component {
       console.log(err);
     }
 
-    console.log("AvailableScheduleEvents", AvailableScheduleEvents, this.state.currentSchedule)
-    console.log(findItemByName(this.state.currentSchedule, AvailableScheduleEvents))
     this.setState({ currentScheduleEvents: findItemByName(this.state.currentSchedule, AvailableScheduleEvents) });
   }
 
