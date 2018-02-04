@@ -6,7 +6,7 @@ import { index } from './controllers/schedules';
 const router = Router();
 
 // Handle /movies.json route with index action from movies controller
-router.route('/schedules.json')
+router.route('/schedules')
   .get(index);
 
 export default router;
