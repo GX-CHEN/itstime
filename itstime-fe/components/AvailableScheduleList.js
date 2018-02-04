@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import {
   StyleSheet,
   ListView,
@@ -7,15 +7,13 @@ import {
 } from 'react-native'
 
 import { Button, Header } from 'react-native-elements'
-import {findAllSchedules} from '../services/APIServices'
+import { findAllSchedules } from '../services/APIServices'
 
 export default class AvailableScheduleList extends Component {
 
-  static navigationOptions = ({navigation}) => {
-    return {
-      header: <Header
-      centerComponent={{ text: 'Pre-set Schedules', style: { color: '#fff', fontWeight: 'bold', fontSize: 20 } }}
-    />}
+  static navigationOptions = {
+    title: 'Pre-set Schedules',
+    headerLeft: null
   }
 
   constructor() {
@@ -66,15 +64,15 @@ export default class AvailableScheduleList extends Component {
   }
 
   render() {
-    const {navigate} = this.props.navigation
-    const {dataSource} = this.state
+    const { navigate } = this.props.navigation
+    const { dataSource } = this.state
     return (
       <View style={styles.container}>
         <View>
           <Button
             large
             style={styles.button}
-            icon={{name: 'add'}}
+            icon={{ name: 'add' }}
             backgroundColor={'#4db6ac'}
             fontWeight='bold'
             title='Add Your Own Plan'
@@ -82,23 +80,32 @@ export default class AvailableScheduleList extends Component {
             }}
           />
         </View>
-          <ListView
-            enableEmptySections={true}
-            dataSource={dataSource}
-            renderRow={(schedule) => (
-              <View style={styles.buttonWrapper}>
-                <Button
-                  large
-                  style={styles.button}
-                  backgroundColor={'#42a5f5'}
-                  fontWeight='bold'
-                  title={schedule}
-                  onPress={() => navigate('Agenda', {schedule})}
-                />
-              </View>
+        <ListView
+          enableEmptySections={true}
+          dataSource={dataSource}
+          renderRow={(schedule) => (
+            <View style={styles.buttonWrapper}>
+              <Button
+                large
+                style={styles.button}
+                backgroundColor={'#42a5f5'}
+                fontWeight='bold'
+                title={schedule}
+                onPress={() => navigate('Agenda', { schedule })}
+              />
+            </View>
           )}>
 
         </ListView>
+
+        <View style={styles.button}>
+        <Button
+          title="Logout"
+          backgroundColor='red'
+          fontWeight='bold'
+          onPress={() => navigate('Home')}
+        />
+        </View>
       </View>
     )
   }
@@ -110,15 +117,16 @@ const styles = StyleSheet.create({
     flex: 1,
     alignSelf: 'stretch',
     paddingTop: 30,
-    justifyContent:'center'
+    justifyContent: 'center'
   },
   buttonWrapper: {
-    marginTop: 15
+    marginTop: 10
   },
   button: {
-    borderWidth: 1,
-    borderColor: 'white',
+    // borderWidth: 1,
+    // borderColor: 'white',
     borderRadius: 2,
-    alignSelf: 'stretch'
+    alignSelf: 'stretch',
+    marginBottom: 10
   }
 })

@@ -75,7 +75,7 @@ export default class CustomSchedule extends Component {
         </ListView>
         <View style={styles.button}>
           <Button
-            title="Add new event"
+            title="Add New Event"
             backgroundColor='#4527a0'
             fontWeight='bold'
           />

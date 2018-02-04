@@ -1,23 +1,23 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import {
   StyleSheet,
   AsyncStorage,
   View
 } from 'react-native';
 
-import {Button, FormLabel, FormInput} from 'react-native-elements';
-import {findItemByName, updateItemByName} from '../model/utils';
+import { Button, FormLabel, FormInput } from 'react-native-elements';
+import { findItemByName, updateItemByName } from '../model/utils';
 
 
 export default class EventDetail extends Component {
 
-  static navigationOptions = ({navigation}) => ({
+  static navigationOptions = ({ navigation }) => ({
     title: 'Input/Change Event details'
   })
 
   constructor(props) {
     super(props);
-    const {params} = this.props.navigation.state
+    const { params } = this.props.navigation.state
 
     this.state = {
       id: params.id,
@@ -51,7 +51,7 @@ export default class EventDetail extends Component {
     }
 
     let currentScheduleEvents = findItemByName(currentScheduleName, availableScheduleEvents);
-    this.setState({availableScheduleEvents, currentScheduleEvents, currentScheduleName})
+    this.setState({ availableScheduleEvents, currentScheduleEvents, currentScheduleName })
   }
 
   async submitChange() {
@@ -70,7 +70,7 @@ export default class EventDetail extends Component {
       '@ScheduleDetails:AvailableScheduleEvents',
       JSON.stringify(updatedAvailableScheduleEvents))
 
-    this.state.navigate("Agenda", {schedule: this.state.currentScheduleName})
+    this.state.navigate("Agenda", { schedule: this.state.currentScheduleName })
   }
 
   async deleteEvent() {
@@ -84,7 +84,7 @@ export default class EventDetail extends Component {
       '@ScheduleDetails:AvailableScheduleEvents',
       JSON.stringify(updatedAvailableScheduleEvents))
 
-    this.state.navigate('Agenda', {schedule: this.state.currentScheduleName})
+    this.state.navigate('Agenda', { schedule: this.state.currentScheduleName })
   }
 
   render() {
@@ -93,26 +93,26 @@ export default class EventDetail extends Component {
       <View>
         <FormLabel>Start Time</FormLabel>
         <FormInput
-          containerStyle={{margin: 10}}
-          inputStyle={{width: '100%', color: 'rgba(0,0,0,0.6)'}}
-          onChangeText={(time) => this.setState({time})}
+          containerStyle={{ margin: 10 }}
+          inputStyle={{ width: '100%', color: 'rgba(0,0,0,0.6)' }}
+          onChangeText={(time) => this.setState({ time })}
           value={this.state.time}
         />
 
         <FormLabel>Event Name</FormLabel>
         <FormInput
-          containerStyle={{margin: 10}}
-          inputStyle={{width: '100%', color: 'rgba(0,0,0,0.6)'}}
-          onChangeText={(name) => this.setState({name})}
+          containerStyle={{ margin: 10 }}
+          inputStyle={{ width: '100%', color: 'rgba(0,0,0,0.6)' }}
+          onChangeText={(name) => this.setState({ name })}
           value={this.state.name}
         />
 
         <FormLabel>Description</FormLabel>
         <FormInput
-          containerStyle={{margin: 10}}
-          inputStyle={{width: '100%', color: 'rgba(0,0,0,0.6)', paddingBottom: 10}}
+          containerStyle={{ margin: 10 }}
+          inputStyle={{ width: '100%', color: 'rgba(0,0,0,0.6)', paddingBottom: 10 }}
           multiline={true}
-          onChangeText={(description) => this.setState({description})}
+          onChangeText={(description) => this.setState({ description })}
           value={this.state.description}
         />
 
