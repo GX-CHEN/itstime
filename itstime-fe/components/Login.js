@@ -26,20 +26,15 @@ export default class Login extends Component {
   async submitChange() {
     const { username, password } = this.state;
 
-    console.log('inside');
     if (!(username && password)) {
-      console.log('here')
       this.setState({ errorMessage: "all the fields must be field" })
     } else {
-      console.log('there')
       const res = await loginService(username, password);
-      console.log('res', res)
 
       if (res == "login success") {
         const { navigate } = this.props.navigation
         navigate('AvailableScheduleList')
       } else if (res == "login fail") {
-        // something
         this.setState({ errorMessage: res })
       }
     }
