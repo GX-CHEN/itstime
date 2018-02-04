@@ -32,6 +32,7 @@ export default class AvailableScheduleList extends Component {
   }
 
   async componentDidMount() {
+    await AsyncStorage.clear()
     let AvailableScheduleEvents = await findAllSchedules();
 
     await AsyncStorage.setItem(

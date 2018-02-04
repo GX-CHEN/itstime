@@ -39,8 +39,7 @@ export default class AgendaScreen extends Component {
       console.log(err);
     }
 
-    console.log(this.state.currentSchedule, AvailableScheduleEvents)
-    this.setState({ currentScheduleEvents: findItemByName(this.state.currentSchedule, AvailableScheduleEvents) });
+    this.setState({ currentScheduleEvents: findItemByName(this.state.currentSchedule, AvailableScheduleEvents.schedules) });
   }
 
   render() {
@@ -48,7 +47,7 @@ export default class AgendaScreen extends Component {
       <Agenda
         items={this.state.items}
         loadItemsForMonth={this.loadItems.bind(this)}
-        selected={'2017-05-16'}
+        selected={'2018-02-01'}
         renderItem={this.renderItem.bind(this)}
         renderEmptyDate={this.renderEmptyDate.bind(this)}
         rowHasChanged={this.rowHasChanged.bind(this)}
@@ -59,7 +58,6 @@ export default class AgendaScreen extends Component {
   async loadItems(day) {
 
     setTimeout(() => {
-      console.log(this.state)
       for (let i = -7; i < 30; i++) {
         const time = day.timestamp + i * 24 * 60 * 60 * 1000;
         const strTime = this.timeToString(time);
@@ -86,10 +84,11 @@ export default class AgendaScreen extends Component {
   }
 
   renderItem(item) {
+    const {currentSchedule} = this.state
     return (
       <View style={[styles.item, { height: item.height }]}>
         <Text style={styles.text}
-          onPress={() => this.state.navigate('CustomSchedule')}>{item.name}</Text>
+          onPress={() => this.state.navigate('CustomSchedule', {currentSchedule})}>{item.name}</Text>
         <Text style={styles.description}>{item.description}</Text>
       </View>
     );
