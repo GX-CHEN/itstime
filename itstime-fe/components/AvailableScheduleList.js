@@ -6,7 +6,7 @@ import {
   View,
 } from 'react-native'
 
-import { Button, Header } from 'react-native-elements'
+import { Button } from 'react-native-elements'
 import { findAllSchedules } from '../services/APIServices'
 
 export default class AvailableScheduleList extends Component {
@@ -99,12 +99,12 @@ export default class AvailableScheduleList extends Component {
         </ListView>
 
         <View style={styles.button}>
-        <Button
-          title="Logout"
-          backgroundColor='red'
-          fontWeight='bold'
-          onPress={() => navigate('Home')}
-        />
+          <Button
+            title="Logout"
+            backgroundColor='red'
+            fontWeight='bold'
+            onPress={() => navigate('Home')}
+          />
         </View>
       </View>
     )

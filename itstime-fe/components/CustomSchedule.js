@@ -1,15 +1,14 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import {
   StyleSheet,
   ListView,
   AsyncStorage,
   Text,
-  View,
-  TouchableHighlight
+  View
 } from 'react-native'
 
 import { Button } from 'react-native-elements'
-import {findItemByName} from '../model/utils'
+import { findItemByName } from '../model/utils'
 
 
 export default class CustomSchedule extends Component {
@@ -47,14 +46,14 @@ export default class CustomSchedule extends Component {
       console.error('Error loading CurrentScheduleName', err)
     }
 
-    let currentScheduleEvents = findItemByName(CurrentScheduleName, AvailableScheduleEvents.schedules) ;
+    let currentScheduleEvents = findItemByName(CurrentScheduleName, AvailableScheduleEvents.schedules);
 
-    this.setState({dataSource: this.ds.cloneWithRows(currentScheduleEvents)})
+    this.setState({ dataSource: this.ds.cloneWithRows(currentScheduleEvents) })
   }
 
   render() {
-    const {navigate} = this.props.navigation
-    const {dataSource} = this.state
+    const { navigate } = this.props.navigation
+    const { dataSource } = this.state
     return (
       <View style={styles.container}>
         <Text style={styles.instructions}>The following is the list of events in this schedule. /n You can click to edit existing
@@ -68,7 +67,7 @@ export default class CustomSchedule extends Component {
                 title={schedule.name}
                 backgroundColor='#42a5f5'
                 fontWeight='bold'
-                onPress={() => navigate('EventDetail', {schedule: schedule, id: rowId})}
+                onPress={() => navigate('EventDetail', { schedule: schedule, id: rowId })}
               />
             </View>
           )}>

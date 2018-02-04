@@ -84,11 +84,11 @@ export default class AgendaScreen extends Component {
   }
 
   renderItem(item) {
-    const {currentSchedule} = this.state
+    const { currentSchedule } = this.state
     return (
       <View style={[styles.item, { height: item.height }]}>
         <Text style={styles.text}
-          onPress={() => this.state.navigate('CustomSchedule', {currentSchedule})}>{item.name}</Text>
+          onPress={() => this.state.navigate('CustomSchedule', { currentSchedule })}>{item.name}</Text>
         <Text style={styles.description}>{item.description}</Text>
       </View>
     );
