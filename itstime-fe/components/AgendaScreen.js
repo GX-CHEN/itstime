@@ -39,6 +39,7 @@ export default class AgendaScreen extends Component {
       console.log(err);
     }
 
+    console.log(this.state.currentSchedule, AvailableScheduleEvents)
     this.setState({ currentScheduleEvents: findItemByName(this.state.currentSchedule, AvailableScheduleEvents) });
   }
 
@@ -58,6 +59,7 @@ export default class AgendaScreen extends Component {
   async loadItems(day) {
 
     setTimeout(() => {
+      console.log(this.state)
       for (let i = -7; i < 30; i++) {
         const time = day.timestamp + i * 24 * 60 * 60 * 1000;
         const strTime = this.timeToString(time);

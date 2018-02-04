@@ -1,6 +1,8 @@
 export function findItemByName(name, scheduleList) {
   for(let index in scheduleList) {
+    console.log('schedule  name', scheduleList[index], scheduleList[index].scheduleName, name )
     if(scheduleList[index].scheduleName == name) {
+      console.log('return here')
       return scheduleList[index].scheduleItems;
     }
   }
