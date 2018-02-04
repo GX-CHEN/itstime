@@ -1,12 +1,19 @@
 import express, { Router } from 'express';
-// Import index action from movies controller
-import { index } from './controllers/schedules';
+import { allSchedules, singleSchedule } from './controllers/schedules';
+import { signup, login} from './controllers/user';
 
-// Initialize the router
 const router = Router();
 
-// Handle /movies.json route with index action from movies controller
 router.route('/schedules')
-  .get(index);
+  .get(allSchedules);
+
+router.route('/schedule')
+  .get(singleSchedule);
+
+router.route('/login')
+  .get(login);
+
+router.route('/signup')
+  .get(signup);
 
 export default router;
