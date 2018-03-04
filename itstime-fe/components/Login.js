@@ -5,7 +5,7 @@ import {
   View
 } from 'react-native';
 import { Button, FormLabel, FormInput, Text } from 'react-native-elements';
-import { loginService } from '../services/APIServices'
+import { loginService } from '../services/APIServices';
 
 export default class Login extends Component {
 

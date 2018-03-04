@@ -144,6 +144,7 @@ const schedules = [
   }
 ];
 
+console.log('inside populate')
 // Connect to MongoDB
 mongoose.connect('mongodb://localhost/schedules');
 
@@ -154,3 +155,5 @@ schedules.map(data => {
   // and save it into the database
   schedule.save();
 });
+
+mongoose.connection.close()

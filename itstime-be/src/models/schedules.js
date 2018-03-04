@@ -2,12 +2,9 @@ import mongoose, { Schema } from 'mongoose';
 
 // Define schedule schema
 var scheduleSchema = new Schema({
-  scheduleName: {
-    type: String,
-    unique: true,
-  },
+  scheduleName: String,
   scheduleItems: Array,
 });
 
 // Export Mongoose model
-export default mongoose.model('schedules', scheduleSchema);
+export default mongoose.model('schedule', scheduleSchema);

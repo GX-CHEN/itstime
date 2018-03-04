@@ -9,7 +9,6 @@ export const signup = (req, res, next) => {
   const user = new User(data);
 
   User.find({ username: data.username }, function (err, docs) {
-    console.log()
     if (docs.length) {
       console.log('user exist')
       res.status(200).send('user already exist')
