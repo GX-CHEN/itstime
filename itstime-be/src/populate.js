@@ -144,15 +144,11 @@ const schedules = [
   }
 ];
 
-// Connect to MongoDB
-mongoose.connect('mongodb://localhost/schedules');
+mongoose.connect('mongodb://localhost/itstime');
 
-// Go through each schedule
 schedules.map(data => {
   // Initialize a model with movie data
   const schedule = new Schedule(data);
   // and save it into the database
   schedule.save();
 });
-
-mongoose.connection.close()

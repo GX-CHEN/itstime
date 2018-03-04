@@ -10,7 +10,8 @@ import { loginService } from '../services/APIServices';
 export default class Login extends Component {
 
   static navigationOptions = ({ navigation }) => ({
-    title: 'Login'
+    title: 'Login',
+    headerLeft: null
   })
 
   constructor(props) {

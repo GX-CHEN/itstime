@@ -2,7 +2,7 @@ import Schedule from '../models/schedules';
 import mongoose from 'mongoose';
 
 export const allSchedules = async (req, res, next) => {
-  await mongoose.connect('mongodb://localhost/schedules');
+  await mongoose.connect('mongodb://localhost/itstime');
 
   // Find all schedules and return json response
   return await Schedule.find().lean().exec(async (err, schedules) => {
@@ -19,8 +19,8 @@ export const allSchedules = async (req, res, next) => {
   );
 };
 
-export const singleSchedule = (req, res, next) => {
-  mongoose.connect('mongodb://localhost/schedules');
+export const singleSchedule = async (req, res, next) => {
+  await mongoose.connect('mongodb://localhost/itstime');
   console.log('params', req.params)
   console.log('query', req.query)
   res.status(200).send('Something broke!')

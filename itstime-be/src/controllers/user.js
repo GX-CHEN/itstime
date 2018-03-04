@@ -1,10 +1,8 @@
 import mongoose from 'mongoose';
 import User from '../models/user';
 
-// Connect to MongoDB
-mongoose.connect('mongodb://localhost/users');
-
-export const signup = (req, res, next) => {
+export const signup = async (req, res, next) => {
+  await mongoose.connect('mongodb://localhost/itstime');
   const data = req.query;
   const user = new User(data);
 
@@ -17,11 +15,13 @@ export const signup = (req, res, next) => {
       user.save();
       res.status(200).send('signup success')
     }
+    mongoose.connection.close();
   });
 
 };
 
-export const login = (req, res, next) => {
+export const login = async (req, res, next) => {
+  await mongoose.connect('mongodb://localhost/itstime');
   const data = req.query;
   User.find(data, function (err, docs) {
     if (docs.length) {
@@ -31,6 +31,7 @@ export const login = (req, res, next) => {
       console.log('not exist')
       res.status(200).send('login fail')
     }
+    mongoose.connection.close();
   });
 
 };
