@@ -3,9 +3,6 @@ import morgan from 'morgan';
 import mongoose from 'mongoose';
 import router from './router';
 
-// Connect to MongoDB
-mongoose.connect('mongodb://localhost/schedules');
-
 // Initialize http server
 const app = express();
 

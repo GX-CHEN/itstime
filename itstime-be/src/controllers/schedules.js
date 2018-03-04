@@ -1,11 +1,13 @@
 import Schedule from '../models/schedules';
+import mongoose from 'mongoose';
+
+// Connect to MongoDB
+mongoose.connect('mongodb://localhost/schedules');
 
 export const allSchedules =  async (req, res, next) => {
-  console.log('inside it')
   // Find all schedules and return json response
-  Schedule.find().lean().exec((err, schedules) => {
-    console.log('schedules', schedules)
-    res.json(
+  return Schedule.find().lean().exec((err, schedules) => {
+    return res.json(
       // Iterate through each schedule
       {
         schedules: schedules.map(schedule => ({

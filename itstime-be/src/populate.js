@@ -144,7 +144,6 @@ const schedules = [
   }
 ];
 
-console.log('inside populate')
 // Connect to MongoDB
 mongoose.connect('mongodb://localhost/schedules');
 
