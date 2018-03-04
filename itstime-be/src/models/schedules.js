@@ -3,7 +3,13 @@ import mongoose, { Schema } from 'mongoose';
 // Define schedule schema
 var scheduleSchema = new Schema({
   scheduleName: String,
-  scheduleItems: Array,
+  scheduleItems: [
+    {
+      name: String,
+      time: String,
+      description: String 
+    }
+  ],
 }, {collection: 'schedules'});
 
 // Export Mongoose model

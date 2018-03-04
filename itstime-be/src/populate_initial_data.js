@@ -144,13 +144,23 @@ const schedules = [
   }
 ];
 
-mongoose.connect('mongodb://localhost/itstime');
+export async function populateInitialSchedules() {
+  mongoose.connect('mongodb://localhost/itstime');
 
-schedules.map(data => {
-  // Initialize a model with movie data
-  const schedule = new Schedule(data);
-  // and save it into the database
-  schedule.save(function(err,item) {
-    console.log(item.id);
- });
-});
+  let scheduleIds = await Promise.all(
+    schedules.map(async data => {
+      const schedule = new Schedule(data);
+      await schedule.save();
+      return schedule._id
+    })
+  )
+  return scheduleIds;
+}
+
+
+// var arr = [1, 2, 3, 4, 5];
+
+// var results: number[] = await Promise.all(arr.map(async (item): Promise<number> => {
+//     await callAsynchronousOperation(item);
+//     return item + 1;
+// }));
