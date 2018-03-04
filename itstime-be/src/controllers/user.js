@@ -10,7 +10,7 @@ export const signup = async (req, res, next) => {
     if (docs.length) {
       res.status(200).send('user already exist')
     } else {
-      const user = new User({...data, scheduleIds: await populateInitialSchedules()});
+      const user = new User({ ...data, scheduleIds: await populateInitialSchedules() });
       await user.save();
       res.status(200).send('signup success')
     }

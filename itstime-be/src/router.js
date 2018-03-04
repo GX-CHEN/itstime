@@ -1,5 +1,5 @@
 import express, { Router } from 'express';
-import { allSchedules, singleSchedule } from './controllers/schedules';
+import { allSchedules, singleSchedule, personalSchedules } from './controllers/schedules';
 import { signup, login} from './controllers/user';
 
 const router = Router();
@@ -9,6 +9,9 @@ router.route('/schedules')
 
 router.route('/schedule')
   .get(singleSchedule);
+
+router.route('/personalSchedules')
+  .get(personalSchedules);
 
 router.route('/login')
   .get(login);
