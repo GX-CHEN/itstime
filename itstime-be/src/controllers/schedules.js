@@ -1,13 +1,13 @@
 import Schedule from '../models/schedules';
 import mongoose from 'mongoose';
 
-// Connect to MongoDB
-mongoose.connect('mongodb://localhost/schedules');
+export const allSchedules = async (req, res, next) => {
+  await mongoose.connect('mongodb://localhost/schedules');
 
-export const allSchedules =  async (req, res, next) => {
   // Find all schedules and return json response
-  return Schedule.find().lean().exec((err, schedules) => {
-    return res.json(
+  return await Schedule.find().lean().exec(async (err, schedules) => {
+    mongoose.connection.close();
+    return await res.json(
       // Iterate through each schedule
       {
         schedules: schedules.map(schedule => ({
@@ -20,7 +20,9 @@ export const allSchedules =  async (req, res, next) => {
 };
 
 export const singleSchedule = (req, res, next) => {
+  mongoose.connect('mongodb://localhost/schedules');
   console.log('params', req.params)
   console.log('query', req.query)
   res.status(200).send('Something broke!')
+  mongoose.connection.close();
 };
