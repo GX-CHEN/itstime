@@ -6,14 +6,16 @@ import {
   AsyncStorage
 } from 'react-native';
 import { Agenda } from 'react-native-calendars';
-import { findItemByName } from '../model/utils'
+import { findItemByName } from '../model/utils';
+import { findSingleSchedule } from '../services/APIServices'
 
 export default class AgendaScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
       items: {},
-      currentSchedule: this.props.navigation.state.params.schedule,
+      currentScheduleId: this.props.navigation.state.params.scheduleId,
+      currentScheduleName: this.props.navigation.state.params.scheduleName,
       currentScheduleEvents: [],
       navigate: this.props.navigation.navigate
     };
@@ -23,11 +25,14 @@ export default class AgendaScreen extends Component {
     title: navigation.state.params.schedule
   })
 
-  async componentDidMount() {
+  async componentWillRecieveProps() {
 
+  }
+
+  async componentDidMount() {
     await AsyncStorage.setItem(
       '@ScheduleDetails:CurrentScheduleName',
-      JSON.stringify(this.state.currentSchedule)
+      JSON.stringify(this.state.currentScheduleName)
     );
 
     let AvailableScheduleEvents;
@@ -39,7 +44,7 @@ export default class AgendaScreen extends Component {
       console.log(err);
     }
 
-    this.setState({ currentScheduleEvents: findItemByName(this.state.currentSchedule, AvailableScheduleEvents) });
+    this.setState({ currentScheduleEvents: findItemByName(this.state.currentScheduleName, AvailableScheduleEvents) });
   }
 
   render() {
@@ -84,11 +89,11 @@ export default class AgendaScreen extends Component {
   }
 
   renderItem(item) {
-    const { currentSchedule } = this.state
+    const { currentScheduleName } = this.state
     return (
       <View style={[styles.item, { height: item.height }]}>
         <Text style={styles.text}
-          onPress={() => this.state.navigate('CustomSchedule', { currentSchedule })}>{item.name}</Text>
+          onPress={() => this.state.navigate('CustomSchedule', { currentScheduleName })}>{item.name}</Text>
         <Text style={styles.description}>{item.description}</Text>
       </View>
     );

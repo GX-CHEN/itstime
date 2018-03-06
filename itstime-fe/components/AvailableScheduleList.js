@@ -54,7 +54,7 @@ export default class AvailableScheduleList extends Component {
     }
 
     try {
-      const AvailableScheduleList = AvailableScheduleEvents.map(item => item.scheduleName)
+      const AvailableScheduleList = AvailableScheduleEvents.map(item => {return {scheduleName: item.scheduleName, scheduleId: item._id}})
       console.log(AvailableScheduleList)
       this.setState({
         dataSource: this.ds.cloneWithRows(AvailableScheduleList)
@@ -101,8 +101,8 @@ export default class AvailableScheduleList extends Component {
                 style={styles.button}
                 backgroundColor={'#42a5f5'}
                 fontWeight='bold'
-                title={schedule}
-                onPress={() => navigate('Agenda', { schedule })}
+                title={schedule.scheduleName}
+                onPress={() => navigate('Agenda', { scheduleId: schedule.scheduleId, scheduleName: schedule.scheduleName })}
               />
             </View>
           )}>
