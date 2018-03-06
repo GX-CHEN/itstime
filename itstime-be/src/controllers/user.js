@@ -12,11 +12,10 @@ export const signup = async (req, res, next) => {
     } else {
       const user = new User({ ...data, scheduleIds: await populateInitialSchedules() });
       await user.save();
-      res.status(200).send('signup success')
+      res.status(200).send(user._id)
     }
     mongoose.connection.close();
   });
-
 };
 
 export const login = async (req, res, next) => {
@@ -24,11 +23,10 @@ export const login = async (req, res, next) => {
   const data = req.query;
   User.find(data, function (err, docs) {
     if (docs.length) {
-      res.status(200).send('login success')
+      return res.status(200).send(docs[0]._id)
     } else {
       res.status(200).send('login fail')
     }
     mongoose.connection.close();
   });
-
 };
