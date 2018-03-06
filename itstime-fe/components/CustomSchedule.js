@@ -46,7 +46,7 @@ export default class CustomSchedule extends Component {
       console.error('Error loading CurrentScheduleName', err)
     }
 
-    let currentScheduleEvents = findItemByName(CurrentScheduleName, AvailableScheduleEvents.schedules);
+    let currentScheduleEvents = findItemByName(CurrentScheduleName, AvailableScheduleEvents);
 
     this.setState({ dataSource: this.ds.cloneWithRows(currentScheduleEvents) })
   }

@@ -7,7 +7,7 @@ import {
 } from 'react-native'
 
 import { Button } from 'react-native-elements'
-import { findAllSchedules } from '../services/APIServices'
+import { findPersonalSchedules } from '../services/APIServices'
 
 export default class AvailableScheduleList extends Component {
 
@@ -30,9 +30,14 @@ export default class AvailableScheduleList extends Component {
   }
 
   async componentDidMount() {
-    await AsyncStorage.clear()
-    let AvailableScheduleEvents = await findAllSchedules();
-    console.log(AvailableScheduleEvents)
+    await AsyncStorage.getAllKeys()
+    .then(AsyncStorage.mulitRemove)
+
+    const personId = await AsyncStorage.getItem(
+      '@loggedInId'
+    );
+
+    let AvailableScheduleEvents = await findPersonalSchedules(personId);
 
     await AsyncStorage.setItem(
       '@ScheduleDetails:CurrentScheduleName',
@@ -49,16 +54,21 @@ export default class AvailableScheduleList extends Component {
     }
 
     try {
-      let data = await AsyncStorage.getItem('@ScheduleDetails:AvailableScheduleList');
-      if (data) {
-        this.setState({
-          dataSource: this.ds.cloneWithRows(JSON.parse(data))
-        });
-      } else {
-        this.setState({
-          dataSource: this.ds.cloneWithRows(['Healthy Life Style', 'Productive Day', 'Early Birds Schedule', 'Night Owls Schedule'])
-        });
-      }
+      const AvailableScheduleList = AvailableScheduleEvents.map(item => item.scheduleName)
+      console.log(AvailableScheduleList)
+      this.setState({
+        dataSource: this.ds.cloneWithRows(AvailableScheduleList)
+      });
+      // let data = await AsyncStorage.getItem('@ScheduleDetails:AvailableScheduleList');
+      // if (data) {
+      //   this.setState({
+      //     dataSource: this.ds.cloneWithRows(JSON.parse(data))
+      //   });
+      // } else {
+      //   this.setState({
+      //     dataSource: this.ds.cloneWithRows(['Healthy Life Style', 'Productive Day', 'Early Birds Schedule', 'Night Owls Schedule'])
+      //   });
+      // }
     } catch (err) {
       console.error(err)
     }

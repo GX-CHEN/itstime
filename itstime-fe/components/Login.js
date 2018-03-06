@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import {
   StyleSheet,
   ScrollView,
-  View
+  View,
+  AsyncStorage
 } from 'react-native';
 import { Button, FormLabel, FormInput, Text } from 'react-native-elements';
 import { loginService } from '../services/APIServices';
@@ -32,10 +33,14 @@ export default class Login extends Component {
     } else {
       const res = await loginService(username, password);
 
-      if (res == "login success") {
+      if (res !== "login fail") {
         const { navigate } = this.props.navigation
+        await AsyncStorage.setItem(
+          '@loggedInId',
+          JSON.stringify(res)
+        );
         navigate('AvailableScheduleList')
-      } else if (res == "login fail") {
+      } else {
         this.setState({ errorMessage: res })
       }
     }

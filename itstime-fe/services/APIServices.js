@@ -2,7 +2,7 @@ import axios from 'axios';
 
 
 export function findAllSchedules() {
-  return axios.get("http://chengongxia.com:3000/v1/schedules").then(function (res) {
+  return axios.get("http://chengongxia.com:3000/v1/allSchedules").then(function (res) {
     if (res.status != 200)
       throw new Error("bad response from server" + res.status)
     return res.data
@@ -10,7 +10,8 @@ export function findAllSchedules() {
 }
 
 export function findPersonalSchedules(id) {
-  return axios.get("http://chengongxia.com:3000/v1/personalSchedules?id=${id}").then(function (res) {
+  const personId = id.replace(/['"]+/g, '')
+  return axios.get(`http://chengongxia.com:3000/v1/personalSchedules?id=${personId}`).then(function (res) {
     if (res.status != 200)
       throw new Error("bad response from server" + res.status)
     return res.data
