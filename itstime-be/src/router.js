@@ -1,17 +1,32 @@
-import express, { Router } from 'express';
-import { allSchedules, singleSchedule, personalSchedules } from './controllers/schedules';
-import { signup, login} from './controllers/user';
+import { Router } from 'express';
+import { allSchedules, getSchedule, removeSchedule, addSchedule, personalSchedules, addScheduleItem, removeScheduleItem, updateScheduleItem } from './controllers/schedules';
+import { signup, login } from './controllers/user';
 
 const router = Router();
 
-router.route('/schedules')
+router.route('/allSchedules')
   .get(allSchedules);
-
-router.route('/schedule')
-  .get(singleSchedule);
 
 router.route('/personalSchedules')
   .get(personalSchedules);
+
+router.route('/schedule')
+  .get(getSchedule);
+
+router.route('/removeSchedule')
+  .get(removeSchedule);
+
+router.route('/addSchedule')
+  .get(addSchedule);
+
+router.route('/removeScheduleItem')
+  .get(removeScheduleItem);
+
+router.route('/addScheduleItem')
+  .get(addScheduleItem);
+
+router.route('/updateScheduleItem')
+  .get(updateScheduleItem);
 
 router.route('/login')
   .get(login);
