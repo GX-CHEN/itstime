@@ -25,15 +25,20 @@ export default class AgendaScreen extends Component {
     title: navigation.state.params.schedule
   })
 
-  async componentWillRecieveProps() {
-
-  }
-
   async componentDidMount() {
-    await AsyncStorage.setItem(
-      '@ScheduleDetails:CurrentScheduleName',
-      JSON.stringify(this.state.currentScheduleName)
-    );
+    let currentScheduleName;
+    if (this.state.currentScheduleName) {
+      currentScheduleName = this.state.currentScheduleName;
+      await AsyncStorage.setItem(
+        '@ScheduleDetails:CurrentScheduleName',
+        JSON.stringify(this.state.currentScheduleName)
+      );
+    } else {
+      currentScheduleName = await AsyncStorage.getItem(
+        '@ScheduleDetails:CurrentScheduleName'
+      );
+      currentScheduleName = currentScheduleName.replace(/['"]+/g, '')
+    }
 
     let AvailableScheduleEvents;
 
@@ -44,7 +49,8 @@ export default class AgendaScreen extends Component {
       console.log(err);
     }
 
-    this.setState({ currentScheduleEvents: findItemByName(this.state.currentScheduleName, AvailableScheduleEvents) });
+    console.log('current schedule name', currentScheduleName)
+    this.setState({ currentScheduleName, currentScheduleEvents: findItemByName(currentScheduleName, AvailableScheduleEvents) });
   }
 
   render() {

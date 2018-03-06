@@ -31,7 +31,7 @@ export default class AvailableScheduleList extends Component {
 
   async componentDidMount() {
     await AsyncStorage.getAllKeys()
-    .then(AsyncStorage.mulitRemove)
+      .then(AsyncStorage.mulitRemove)
 
     const personId = await AsyncStorage.getItem(
       '@loggedInId'
@@ -39,10 +39,7 @@ export default class AvailableScheduleList extends Component {
 
     let AvailableScheduleEvents = await findPersonalSchedules(personId);
 
-    await AsyncStorage.setItem(
-      '@ScheduleDetails:CurrentScheduleName',
-      JSON.stringify("")
-    );
+    await AsyncStorage.removeItem('@ScheduleDetails:CurrentScheduleName');
 
     if (!await AsyncStorage.getItem('@ScheduleDetails:AvailableScheduleEvents')) {
       await AsyncStorage.setItem(
@@ -54,7 +51,7 @@ export default class AvailableScheduleList extends Component {
     }
 
     try {
-      const AvailableScheduleList = AvailableScheduleEvents.map(item => {return {scheduleName: item.scheduleName, scheduleId: item._id}})
+      const AvailableScheduleList = AvailableScheduleEvents.map(item => { return { scheduleName: item.scheduleName, scheduleId: item._id } })
       console.log(AvailableScheduleList)
       this.setState({
         dataSource: this.ds.cloneWithRows(AvailableScheduleList)
