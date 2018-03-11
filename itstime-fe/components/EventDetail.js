@@ -4,10 +4,8 @@ import {
   AsyncStorage,
   View
 } from 'react-native';
-
 import { Button, FormLabel, FormInput } from 'react-native-elements';
-import { findItemByName, updateItemByName } from '../model/utils';
-
+import { removeScheduleItem, addScheduleItem, updateScheduleItem } from '../services/APIServices';
 
 export default class EventDetail extends Component {
 
@@ -21,27 +19,18 @@ export default class EventDetail extends Component {
 
     this.state = {
       id: params.id,
+      itemId: params.schedule._id,
       time: params.schedule.time,
       name: params.schedule.name,
       description: params.schedule.description,
       previousSchedule: params.schedule,
       navigate: this.props.navigation.navigate,
-      availableScheduleEvents: null,
-      currentScheduleEvents: null,
       currentScheduleName: ""
     };
   }
 
   async componentDidMount() {
-    let availableScheduleEvents;
     let currentScheduleName;
-
-    try {
-      let data = await AsyncStorage.getItem('@ScheduleDetails:AvailableScheduleEvents');
-      availableScheduleEvents = JSON.parse(data);
-    } catch (err) {
-      console.log(err);
-    }
 
     try {
       let data = await AsyncStorage.getItem('@ScheduleDetails:CurrentScheduleName');
@@ -50,45 +39,28 @@ export default class EventDetail extends Component {
       console.error('Error loading CurrentScheduleName', err)
     }
 
-    let currentScheduleEvents = findItemByName(currentScheduleName, availableScheduleEvents);
-    this.setState({ availableScheduleEvents, currentScheduleEvents, currentScheduleName })
+    this.setState({ currentScheduleName })
   }
 
   async submitChange() {
-    let updatedEntry = {
-      time: this.state.time,
-      name: this.state.name,
-      description: this.state.description
-    }
-    let updatedScheduleEvents = this.state.currentScheduleEvents
-    updatedScheduleEvents[this.state.id] = updatedEntry
-
-    let updatedAvailableScheduleEvents = this.state.availableScheduleEvents
-    updatedAvailableScheduleEvents = updateItemByName(this.state.currentScheduleName, updatedScheduleEvents, updatedAvailableScheduleEvents)
-
-    await AsyncStorage.setItem(
-      '@ScheduleDetails:AvailableScheduleEvents',
-      JSON.stringify(updatedAvailableScheduleEvents))
-
+    const currentScheduleId = await AsyncStorage.getItem(
+      '@ScheduleDetails:CurrentScheduleId'
+    );
+    const {time, name, description} = this.state;
+    updateScheduleItem(currentScheduleId, this.state.itemId, name, time, description);
     this.state.navigate("Agenda", { schedule: this.state.currentScheduleName })
   }
 
   async deleteEvent() {
-    let updatedScheduleEvents = this.state.currentScheduleEvents
-    updatedScheduleEvents.splice(this.state.id, 1)
+    const currentScheduleId = await AsyncStorage.getItem(
+      '@ScheduleDetails:CurrentScheduleId'
+    );
 
-    let updatedAvailableScheduleEvents = this.state.availableScheduleEvents
-    updatedAvailableScheduleEvents = updateItemByName(this.state.currentScheduleName, updatedScheduleEvents, updatedAvailableScheduleEvents)
-
-    await AsyncStorage.setItem(
-      '@ScheduleDetails:AvailableScheduleEvents',
-      JSON.stringify(updatedAvailableScheduleEvents))
-
+    await removeScheduleItem(currentScheduleId, this.state.itemId);
     this.state.navigate('Agenda', { schedule: this.state.currentScheduleName })
   }
 
   render() {
-
     return (
       <View>
         <FormLabel>Start Time</FormLabel>
@@ -132,11 +104,9 @@ export default class EventDetail extends Component {
           />
         </View>
       </View>
-
     );
   }
 }
-
 
 const styles = StyleSheet.create({
   button: {

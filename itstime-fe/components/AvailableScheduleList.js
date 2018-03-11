@@ -52,20 +52,9 @@ export default class AvailableScheduleList extends Component {
 
     try {
       const AvailableScheduleList = AvailableScheduleEvents.map(item => { return { scheduleName: item.scheduleName, scheduleId: item._id } })
-      console.log(AvailableScheduleList)
       this.setState({
         dataSource: this.ds.cloneWithRows(AvailableScheduleList)
       });
-      // let data = await AsyncStorage.getItem('@ScheduleDetails:AvailableScheduleList');
-      // if (data) {
-      //   this.setState({
-      //     dataSource: this.ds.cloneWithRows(JSON.parse(data))
-      //   });
-      // } else {
-      //   this.setState({
-      //     dataSource: this.ds.cloneWithRows(['Healthy Life Style', 'Productive Day', 'Early Birds Schedule', 'Night Owls Schedule'])
-      //   });
-      // }
     } catch (err) {
       console.error(err)
     }
@@ -84,8 +73,7 @@ export default class AvailableScheduleList extends Component {
             backgroundColor={'#4db6ac'}
             fontWeight='bold'
             title='Add Your Own Plan'
-            onPress={() => {
-            }}
+            onPress={() => navigate('NewSchedules')}
           />
         </View>
         <ListView

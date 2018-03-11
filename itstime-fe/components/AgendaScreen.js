@@ -6,7 +6,6 @@ import {
   AsyncStorage
 } from 'react-native';
 import { Agenda } from 'react-native-calendars';
-import { findItemByName } from '../model/utils';
 import { findSingleSchedule } from '../services/APIServices'
 
 export default class AgendaScreen extends Component {
@@ -26,31 +25,22 @@ export default class AgendaScreen extends Component {
   })
 
   async componentDidMount() {
-    let currentScheduleName;
-    if (this.state.currentScheduleName) {
-      currentScheduleName = this.state.currentScheduleName;
+    let currentScheduleId;
+    if (this.state.currentScheduleId) {
+      currentScheduleId = this.state.currentScheduleId;
       await AsyncStorage.setItem(
-        '@ScheduleDetails:CurrentScheduleName',
-        JSON.stringify(this.state.currentScheduleName)
+        '@ScheduleDetails:CurrentScheduleId',
+        JSON.stringify(this.state.currentScheduleId)
       );
     } else {
-      currentScheduleName = await AsyncStorage.getItem(
-        '@ScheduleDetails:CurrentScheduleName'
+      currentScheduleId = await AsyncStorage.getItem(
+        '@ScheduleDetails:CurrentScheduleId'
       );
-      currentScheduleName = currentScheduleName.replace(/['"]+/g, '')
+      currentScheduleId = currentScheduleId.replace(/['"]+/g, '')
     }
 
-    let AvailableScheduleEvents;
-
-    try {
-      let data = await AsyncStorage.getItem('@ScheduleDetails:AvailableScheduleEvents');
-      AvailableScheduleEvents = JSON.parse(data);
-    } catch (err) {
-      console.log(err);
-    }
-
-    console.log('current schedule name', currentScheduleName)
-    this.setState({ currentScheduleName, currentScheduleEvents: findItemByName(currentScheduleName, AvailableScheduleEvents) });
+    const scheduleEventWrapper = await findSingleSchedule(currentScheduleId);
+    await this.setState({ currentScheduleEvents: scheduleEventWrapper[0].scheduleItems });
   }
 
   render() {
@@ -107,7 +97,9 @@ export default class AgendaScreen extends Component {
 
   renderEmptyDate() {
     return (
-      <View style={styles.emptyDate}><Text>This is empty date!</Text></View>
+      <View style={styles.emptyDate}>
+        <Text onPress={() => this.state.navigate('CustomSchedule')}>This is empty date!</Text>
+      </View>
     );
   }
 

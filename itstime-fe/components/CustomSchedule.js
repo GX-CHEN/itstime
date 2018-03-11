@@ -8,8 +8,7 @@ import {
 } from 'react-native'
 
 import { Button } from 'react-native-elements'
-import { findItemByName } from '../model/utils'
-
+import { findSingleSchedule } from '../services/APIServices'
 
 export default class CustomSchedule extends Component {
 
@@ -29,26 +28,18 @@ export default class CustomSchedule extends Component {
   }
 
   async componentDidMount() {
-    let AvailableScheduleEvents;
-    let CurrentScheduleName;
+    let CurrentScheduleId;
 
     try {
-      let data = await AsyncStorage.getItem('@ScheduleDetails:AvailableScheduleEvents');
-      AvailableScheduleEvents = JSON.parse(data);
+      let data = await AsyncStorage.getItem('@ScheduleDetails:CurrentScheduleId');
+      CurrentScheduleId = JSON.parse(data);
     } catch (err) {
-      console.log(err);
+      console.error('Error loading CurrentScheduleId', err)
     }
 
-    try {
-      let data = await AsyncStorage.getItem('@ScheduleDetails:CurrentScheduleName');
-      CurrentScheduleName = JSON.parse(data);
-    } catch (err) {
-      console.error('Error loading CurrentScheduleName', err)
-    }
+    let scheduleEventWrapper = await findSingleSchedule(CurrentScheduleId);
 
-    let currentScheduleEvents = findItemByName(CurrentScheduleName, AvailableScheduleEvents);
-
-    this.setState({ dataSource: this.ds.cloneWithRows(currentScheduleEvents) })
+    this.setState({ dataSource: this.ds.cloneWithRows(scheduleEventWrapper[0].scheduleItems) })
   }
 
   render() {

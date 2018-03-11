@@ -28,15 +28,12 @@ export default class Signup extends Component {
     const { navigate } = this.props.navigation
     const { username, password, confirmPassword } = this.state;
 
-    console.log({ username, password, confirmPassword })
-
     if (!(username && password && confirmPassword)) {
       this.setState({ errorMessage: "all the fields must be field" })
     } else if (password != confirmPassword) {
       this.setState({ errorMessage: "passowrd must match" })
     } else {
       const res = await singupService(username, password);
-      console.log(res)
 
       if (res == "signup success") {
         navigate('AvailableScheduleList')
