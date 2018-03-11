@@ -21,10 +21,10 @@ export default class EventDetail extends Component {
     this.state = {
       id: params.id,
       action: params.action,
-      itemId: params.schedule ? params.schedule._id: null,
-      time: params.schedule ? params.schedule.time: null,
-      name: params.schedule ? params.schedule.name: null,
-      description: params.schedule ? params.schedule.description: null,
+      itemId: params.schedule ? params.schedule._id : null,
+      time: params.schedule ? params.schedule.time : null,
+      name: params.schedule ? params.schedule.name : null,
+      description: params.schedule ? params.schedule.description : null,
       previousSchedule: params.schedule,
       navigate: this.props.navigation.navigate,
       currentScheduleName: ""
@@ -48,13 +48,13 @@ export default class EventDetail extends Component {
     const currentScheduleId = await AsyncStorage.getItem(
       '@ScheduleDetails:CurrentScheduleId'
     );
-    const {time, name, description, action} = this.state;
+    const { time, name, description, action } = this.state;
     if (action == "add") {
-      addScheduleItem(currentScheduleId, name, time, description);
+      await addScheduleItem(currentScheduleId, name, time, description);
     } else {
-      updateScheduleItem(currentScheduleId, this.state.itemId, name, time, description);
+      await updateScheduleItem(currentScheduleId, this.state.itemId, name, time, description);
     }
-    
+
     this.state.navigate("Agenda", { schedule: this.state.currentScheduleName })
   }
 
@@ -103,13 +103,15 @@ export default class EventDetail extends Component {
           />
         </View>
 
-        <View style={styles.button}>
-          <Button
-            title="Delete Event"
-            backgroundColor="rgb(255, 122, 0)"
-            onPress={() => this.deleteEvent()}
-          />
-        </View>
+        {(this.state.action == "edit") &&
+          <View style={styles.button}>
+            <Button
+              title="Delete Event"
+              backgroundColor="rgb(255, 122, 0)"
+              onPress={() => this.deleteEvent()}
+            />
+          </View>
+        }
       </View>
     );
   }

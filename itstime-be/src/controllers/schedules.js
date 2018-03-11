@@ -70,7 +70,7 @@ export const addScheduleItem = async (req, res, next) => {
   const { scheduleId, name, time, description } = req.query;
   await Schedule.update(
     { _id: scheduleId },
-    { "$push": { scheduleItems: { name, time, description } } },
+    { "$addToSet": { scheduleItems: { name, time, description } } },
     function (err, numAffected) {
       console.log("err, numAffected", err, numAffected)
       return res.status(200).send("schedule item created succeeded")
