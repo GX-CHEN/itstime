@@ -4,7 +4,9 @@ import {
   ListView,
   AsyncStorage,
   Text,
-  View
+  View,
+  TouchableHighlight,
+  Image
 } from 'react-native'
 
 import { Button } from 'react-native-elements'
@@ -12,9 +14,13 @@ import { findSingleSchedule } from '../services/APIServices'
 
 export default class CustomSchedule extends Component {
 
-  static navigationOptions = {
-    title: 'Customize this schedule'
-  }
+  static navigationOptions = ({ navigation }) => ({
+    title: 'Customize this schedule',
+    headerLeft: (
+      <TouchableHighlight onPress={() => navigation.navigate('Agenda')}>
+        <Image source={require('../asset/backButton.png')} style={{height: 30, width: 30, marginLeft: 15}}/>
+      </TouchableHighlight>)
+  })
 
   constructor() {
     super()
@@ -58,7 +64,7 @@ export default class CustomSchedule extends Component {
                 title={schedule.name}
                 backgroundColor='#42a5f5'
                 fontWeight='bold'
-                onPress={() => navigate('EventDetail', { schedule: schedule, id: rowId })}
+                onPress={() => navigate('EventDetail', { schedule: schedule, id: rowId, action: "edit" })}
               />
             </View>
           )}>
@@ -68,6 +74,7 @@ export default class CustomSchedule extends Component {
             title="Add New Event"
             backgroundColor='#4527a0'
             fontWeight='bold'
+            onPress={() => navigate('EventDetail', { action: "add" })}
           />
         </View>
       </View>

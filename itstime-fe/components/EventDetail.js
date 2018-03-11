@@ -10,7 +10,8 @@ import { removeScheduleItem, addScheduleItem, updateScheduleItem } from '../serv
 export default class EventDetail extends Component {
 
   static navigationOptions = ({ navigation }) => ({
-    title: 'Input/Change Event details'
+    title: 'Input/Change Event details',
+    headerLeft: null
   })
 
   constructor(props) {
@@ -19,10 +20,11 @@ export default class EventDetail extends Component {
 
     this.state = {
       id: params.id,
-      itemId: params.schedule._id,
-      time: params.schedule.time,
-      name: params.schedule.name,
-      description: params.schedule.description,
+      action: params.action,
+      itemId: params.schedule ? params.schedule._id: null,
+      time: params.schedule ? params.schedule.time: null,
+      name: params.schedule ? params.schedule.name: null,
+      description: params.schedule ? params.schedule.description: null,
       previousSchedule: params.schedule,
       navigate: this.props.navigation.navigate,
       currentScheduleName: ""
@@ -46,8 +48,13 @@ export default class EventDetail extends Component {
     const currentScheduleId = await AsyncStorage.getItem(
       '@ScheduleDetails:CurrentScheduleId'
     );
-    const {time, name, description} = this.state;
-    updateScheduleItem(currentScheduleId, this.state.itemId, name, time, description);
+    const {time, name, description, action} = this.state;
+    if (action == "add") {
+      addScheduleItem(currentScheduleId, name, time, description);
+    } else {
+      updateScheduleItem(currentScheduleId, this.state.itemId, name, time, description);
+    }
+    
     this.state.navigate("Agenda", { schedule: this.state.currentScheduleName })
   }
 

@@ -3,7 +3,9 @@ import {
   Text,
   View,
   StyleSheet,
-  AsyncStorage
+  AsyncStorage,
+  Image,
+  TouchableHighlight
 } from 'react-native';
 import { Agenda } from 'react-native-calendars';
 import { findSingleSchedule } from '../services/APIServices'
@@ -21,7 +23,11 @@ export default class AgendaScreen extends Component {
   }
 
   static navigationOptions = ({ navigation }) => ({
-    title: navigation.state.params.schedule
+    title: navigation.state.params.schedule,
+    headerLeft: (
+      <TouchableHighlight onPress={() => navigation.navigate('AvailableScheduleList')}>
+        <Image source={require('../asset/backButton.png')} style={{height: 30, width: 30, marginLeft: 15}}/>
+      </TouchableHighlight>)
   })
 
   async componentDidMount() {
