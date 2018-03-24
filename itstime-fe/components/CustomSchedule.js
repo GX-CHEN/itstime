@@ -15,11 +15,7 @@ import { findSingleSchedule } from '../services/APIServices'
 export default class CustomSchedule extends Component {
 
   static navigationOptions = ({ navigation }) => ({
-    title: 'Customize this schedule',
-    headerLeft: (
-      <TouchableHighlight onPress={() => navigation.navigate('Agenda')}>
-        <Image source={require('../asset/backButton.png')} style={{height: 30, width: 30, marginLeft: 15}}/>
-      </TouchableHighlight>)
+    title: 'Customize this schedule'
   })
 
   constructor() {
