@@ -3,7 +3,7 @@ import axios from 'axios';
 const baseURL = "http://localhost:3001"
 // schedule part
 export function findAllSchedules() {
-  return axios.get(`v1/allSchedules`).then(function (res) {
+  return axios.get(`${baseURL}/v1/allSchedules`).then(function (res) {
     if (res.status != 200)
       throw new Error("bad response from server" + res.status)
     return res.data
