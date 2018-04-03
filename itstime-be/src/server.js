@@ -1,10 +1,11 @@
 import express from 'express';
 import morgan from 'morgan';
-import mongoose from 'mongoose';
+import cors from 'cors';
 import router from './router';
 
 // Initialize http server
 const app = express();
+app.use(cors());
 
 // Logger that outputs all requests into the console
 app.use(morgan('combined'));
