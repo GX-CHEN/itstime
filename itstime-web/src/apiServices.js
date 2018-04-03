@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseURL = "http://localhost:3001"
+const baseURL = "http://chengongxia.com:3001"
 // schedule part
 export function findAllSchedules() {
   return axios.get(`${baseURL}/v1/allSchedules`).then(function (res) {
