@@ -8,7 +8,7 @@ export const signup = async (req, res, next) => {
 
   User.find({ username: data.username }, async function (err, docs) {
     if (docs.length) {
-      res.status(200).send('user already exist')
+      res.status(200).send(`user ${data.username} already exist`)
     } else {
       const user = new User({ ...data, scheduleIds: await populateInitialSchedules() });
       await user.save();
