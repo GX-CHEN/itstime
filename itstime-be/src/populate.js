@@ -7,11 +7,11 @@ const schedules = [
     scheduleItems: [
       {
         name: 'Wake up',
-        time: '7:00',
+        time: '07:00',
         description: 'According to chronobiologists (specialists in the study of the body\'s physiological rhythms), our internal alarm clocks are programmed to go off after seven to eight hours sleep, which means I, like most people, get a biological wake-up call at around 7am.'
       }, {
         name: 'Eat Breakfast',
-        time: '9:25',
+        time: '09:25',
         description: 'Studies at the University of Leeds by Professor John Blundell have shown that people who eat a breakfast that is high in carbohydrate and low in fat are less likely to binge on high-calories foods later in the day.'
       }, {
         name: 'Take light lunch',
@@ -38,15 +38,15 @@ const schedules = [
     scheduleItems: [
       {
         name: 'Wake up',
-        time: '6:00',
+        time: '06:00',
         description: 'Never use the snooze button again as it confuses your brain and body'
       }, {
         name: 'Eat Breakfast',
-        time: '7:30',
+        time: '07:30',
         description: 'Shower, workout before breakfast'
       }, {
         name: 'Working on demanding tasks',
-        time: '9:00',
+        time: '09:00',
         description: 'Ignore social media in the morning'
       }, {
         name: 'Packed lunch or order in',
@@ -69,11 +69,11 @@ const schedules = [
     scheduleItems: [
       {
         name: 'Eat Breakfast',
-        time: '6:00',
+        time: '06:00',
         description: 'The best time is within 30 minutes of waking up'
       }, {
         name: 'Exercise',
-        time: '6:30',
+        time: '06:30',
         description: 'It can be easier to stick with a morning exercise routine because the timing is less likely to conflict with other responsibilities'
       }, {
         name: 'Coffee Break',
@@ -108,7 +108,7 @@ const schedules = [
     scheduleItems: [
       {
         name: 'Eat Breakfast',
-        time: '7:00',
+        time: '07:00',
         description: 'The best time is within 30 minutes of waking up'
       }, {
         name: 'Coffee Break',
