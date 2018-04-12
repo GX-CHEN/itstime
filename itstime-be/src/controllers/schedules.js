@@ -60,7 +60,7 @@ export const removeSchedule = async (req, res, next) => {
   await mongoose.connect('mongodb://localhost/itstime');
   return await Schedule.remove({ '_id': req.query.id }, (err) => {
     if (!err) {
-      return res.status(200).send('schedule removed succeed')
+      return res.status(200).send('schedule removed succeed' + req.query.id)
     }
   })
 };
@@ -73,7 +73,7 @@ export const addScheduleItem = async (req, res, next) => {
     { "$addToSet": { scheduleItems: { name, time, description } } },
     function (err, numAffected) {
       console.log("err, numAffected", err, numAffected)
-      return res.status(200).send("schedule item created succeeded")
+      return res.status(200).send("schedule item created succeeded" + name + time)
     }
   )
 };
@@ -86,7 +86,7 @@ export const removeScheduleItem = async (req, res, next) => {
     { "$pull": { scheduleItems: { _id: itemId } } },
     function (err, numAffected) {
       console.log("err, numAffected", err, numAffected)
-      return res.status(200).send("schedule item deleted succeeded")
+      return res.status(200).send("schedule item deleted succeeded" + itemId)
     }
   )
 };
@@ -99,7 +99,7 @@ export const updateScheduleItem = async (req, res, next) => {
     { $set: { "scheduleItems.$.name": name, "scheduleItems.$.time": time, "scheduleItems.$.description": description } },
     function (err, numAffected) {
       console.log("err, numAffected", err, numAffected)
-      return res.status(200).send("schedule item updated succeeded")
+      return res.status(200).send("schedule item updated succeeded" + itemId)
     }
   )
 };
