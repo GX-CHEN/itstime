@@ -71,19 +71,13 @@ class ScheduleList extends React.Component {
                 renderItem={item => (
                   <List.Item>
                     <Card
-                      title={
-                        <a onClick={this.goToAgenda.bind(this, item._id)}>
-                          {item.name}
-                        </a>
-                      }
+                      title={<a onClick={this.goToAgenda.bind(this, item._id)}>{item.name}</a>}
                       style={{
                         height: 240,
                         minWidth: 240,
                         overflow: 'hidden'
                       }}>
-                      <p onClick={this.goToAgenda.bind(this, item._id)}>
-                        {item.desc}
-                      </p>
+                      <p onClick={this.goToAgenda.bind(this, item._id)}>{item.desc}</p>
                     </Card>
                   </List.Item>
                 )}

@@ -42,12 +42,7 @@ class NormalRegisterForm extends React.Component {
         <FormItem>
           {getFieldDecorator('userName', {
             rules: [{ required: true, message: 'Please input your username!' }]
-          })(
-            <Input
-              prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-              placeholder="Username"
-            />
-          )}
+          })(<Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Username" />)}
         </FormItem>
         <FormItem>
           {getFieldDecorator('password', {
@@ -75,10 +70,7 @@ class NormalRegisterForm extends React.Component {
           )}
         </FormItem>
         <FormItem>
-          <Button
-            type="primary"
-            htmlType="submit"
-            className="login-form-button">
+          <Button type="primary" htmlType="submit" className="login-form-button">
             Register
           </Button>
         </FormItem>
@@ -106,12 +98,7 @@ class Register extends React.Component {
   }
 
   render() {
-    return (
-      <WrappedNormalRegisterForm
-        className="form-wrapper"
-        register={this.props.register}
-      />
-    );
+    return <WrappedNormalRegisterForm className="form-wrapper" register={this.props.register} />;
   }
 }
 

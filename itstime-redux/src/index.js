@@ -6,7 +6,7 @@ import store, { history } from './store';
 import App from './containers/app';
 
 import 'sanitize.css/sanitize.css';
-import 'antd/dist/antd.css'; 
+import 'antd/dist/antd.css';
 import './index.css';
 
 const target = document.querySelector('#root');

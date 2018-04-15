@@ -1,10 +1,4 @@
-import {
-  LIST_SCHEDULE,
-  LIST_EVENTS,
-  ADD_EVENT,
-  UPDATE_EVENT,
-  REMOVE_EVENT
-} from '../const/schedule';
+import { LIST_SCHEDULE, LIST_EVENTS, ADD_EVENT, UPDATE_EVENT, REMOVE_EVENT } from '../const/schedule';
 import {
   findPersonalSchedules,
   findSingleSchedule,

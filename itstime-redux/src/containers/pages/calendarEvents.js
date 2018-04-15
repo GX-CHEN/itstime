@@ -37,13 +37,7 @@ class CalendarEvents extends React.Component {
       const hour = splitTime[0];
       const minute = splitTime[1];
       const today = new Date();
-      const start = new Date(
-        today.getFullYear(),
-        today.getMonth(),
-        today.getDate(),
-        hour,
-        minute
-      );
+      const start = new Date(today.getFullYear(), today.getMonth(), today.getDate(), hour, minute);
       const end = new Date(start.getTime() + 15 * 60000);
       return { id: _id, title: name, start, end, description };
     }

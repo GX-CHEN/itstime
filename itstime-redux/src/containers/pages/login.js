@@ -26,12 +26,7 @@ class NormalLoginForm extends React.Component {
         <FormItem>
           {getFieldDecorator('userName', {
             rules: [{ required: true, message: 'Please input your username!' }]
-          })(
-            <Input
-              prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-              placeholder="Username"
-            />
-          )}
+          })(<Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Username" />)}
         </FormItem>
         <FormItem>
           {getFieldDecorator('password', {
@@ -52,10 +47,7 @@ class NormalLoginForm extends React.Component {
           <a className="login-form-forgot" href="">
             Forgot password
           </a>
-          <Button
-            type="primary"
-            htmlType="submit"
-            className="login-form-button">
+          <Button type="primary" htmlType="submit" className="login-form-button">
             Log in
           </Button>
           Or <a onClick={() => changePage('/register')}>register now!</a>
@@ -97,13 +89,7 @@ class Login extends React.Component {
 
   render() {
     const { changePage } = this.props;
-    return (
-      <WrappedNormalLoginForm
-        className="form-wrapper"
-        changePage={changePage}
-        login={this.props.login}
-      />
-    );
+    return <WrappedNormalLoginForm className="form-wrapper" changePage={changePage} login={this.props.login} />;
   }
 }
 

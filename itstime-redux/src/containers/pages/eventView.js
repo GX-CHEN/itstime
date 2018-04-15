@@ -22,18 +22,10 @@ class FormView extends Component {
         ...fieldsValue,
         time: fieldsValue['time'].format('HH:mm')
       };
-      console.log('Received values of form: ', values);
       const localStorageScheduleId = localStorage.getItem('scheduleId');
       if (this.props.actionType === 'add') {
-        console.log('add');
-        this.props.addEvent(
-          localStorageScheduleId,
-          values['name'],
-          values['time'],
-          values['description']
-        );
+        this.props.addEvent(localStorageScheduleId, values['name'], values['time'], values['description']);
       } else {
-        console.log('update');
         this.props.updateEvent(
           localStorageScheduleId,
           this.props.eventId,
@@ -50,10 +42,7 @@ class FormView extends Component {
   };
 
   deleteEvent = () => {
-    this.props.removeEvent(
-      localStorage.getItem('scheduleId'),
-      this.props.eventId
-    );
+    this.props.removeEvent(localStorage.getItem('scheduleId'), this.props.eventId);
   };
 
   render() {
@@ -79,9 +68,7 @@ class FormView extends Component {
         <FormItem label="Start Time">
           {getFieldDecorator('time', {
             initialValue: moment(this.props.time || '08:00', timeFormat),
-            rules: [
-              { type: 'object', required: true, message: 'Please select time!' }
-            ]
+            rules: [{ type: 'object', required: true, message: 'Please select time!' }]
           })(<TimePicker style={{ width: '100%' }} format={timeFormat} />)}
         </FormItem>
         <FormItem label="Event Description">
@@ -96,17 +83,12 @@ class FormView extends Component {
           </Button>
         </FormItem>
         <FormItem>
-          <Button
-            type="danger"
-            style={{ width: '100%' }}
-            onClick={() => this.deleteEvent()}>
+          <Button type="danger" style={{ width: '100%' }} onClick={() => this.deleteEvent()}>
             Delete
           </Button>
         </FormItem>
         <FormItem>
-          <Button
-            style={{ width: '100%', border: 'none', color: '#1890ff' }}
-            onClick={() => this.goToCalendar()}>
+          <Button style={{ width: '100%', border: 'none', color: '#1890ff' }} onClick={() => this.goToCalendar()}>
             Cancel
           </Button>
         </FormItem>
@@ -136,7 +118,6 @@ class EventView extends Component {
   }
 
   async componentDidMount() {
-    console.log('this.props', this.props);
     const localStorageScheduleId = await localStorage.getItem('scheduleId');
     const { location } = this.props;
 

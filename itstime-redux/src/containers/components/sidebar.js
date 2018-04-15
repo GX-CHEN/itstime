@@ -37,10 +37,7 @@ class Sidebar extends React.Component {
           </Menu.Item>
           <Menu.Item key="3" style={{ position: 'absolute', bottom: 20 }}>
             <Icon type="poweroff" style={{ color: 'red' }} />
-            <span
-              className="nav-text"
-              style={{ color: 'red' }}
-              onClick={this.routeToLogin}>
+            <span className="nav-text" style={{ color: 'red' }} onClick={this.routeToLogin}>
               Logout
             </span>
           </Menu.Item>
