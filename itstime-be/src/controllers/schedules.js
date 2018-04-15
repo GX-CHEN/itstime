@@ -67,7 +67,7 @@ export const removeSchedule = async (req, res, next) => {
 
 export const addScheduleItem = async (req, res, next) => {
   await mongoose.connect('mongodb://localhost/itstime');
-  const { scheduleId, name, time, description } = req.query;
+  const { scheduleId, name, time, description } = req.body;
   await Schedule.update(
     { _id: scheduleId },
     { "$addToSet": { scheduleItems: { name, time, description } } },
@@ -80,7 +80,7 @@ export const addScheduleItem = async (req, res, next) => {
 
 export const removeScheduleItem = async (req, res, next) => {
   await mongoose.connect('mongodb://localhost/itstime');
-  const { scheduleId, itemId } = req.query;
+  const { scheduleId, itemId } = req.body;
   await Schedule.update(
     { _id: scheduleId },
     { "$pull": { scheduleItems: { _id: itemId } } },
@@ -93,7 +93,7 @@ export const removeScheduleItem = async (req, res, next) => {
 
 export const updateScheduleItem = async (req, res, next) => {
   await mongoose.connect('mongodb://localhost/itstime');
-  const { scheduleId, itemId, name, time, description } = req.query;
+  const { scheduleId, itemId, name, time, description } = req.body;
   await Schedule.update(
     { _id: scheduleId, "scheduleItems._id": itemId },
     { $set: { "scheduleItems.$.name": name, "scheduleItems.$.time": time, "scheduleItems.$.description": description } },

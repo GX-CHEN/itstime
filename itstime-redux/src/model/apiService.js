@@ -51,10 +51,9 @@ export function addSchedule(personId, name) {
 export function removeScheduleItem(scheduleId, itemId) {
   scheduleId = scheduleId.replace(/['"]+/g, '');
   itemId = itemId.replace(/['"]+/g, '');
+  const scheduleItem = { scheduleId, itemId };
   return axios
-    .get(
-      `${baseURL}/v1/removeScheduleItem?scheduleId=${scheduleId}&itemId=${itemId}`
-    )
+    .post(`${baseURL}/v1/removeScheduleItem`, scheduleItem)
     .then(function(res) {
       if (res.status !== 200)
         throw new Error('bad response from server' + res.status);
@@ -64,10 +63,9 @@ export function removeScheduleItem(scheduleId, itemId) {
 
 export function addScheduleItem(scheduleId, name, time, description) {
   scheduleId = scheduleId.replace(/['"]+/g, '');
+  const scheduleItem = { scheduleId, name, time, description };
   return axios
-    .get(
-      `${baseURL}/v1/addScheduleItem?scheduleId=${scheduleId}&name=${name}&time=${time}&description=${description}`
-    )
+    .post(`${baseURL}/v1/addScheduleItem`, scheduleItem)
     .then(function(res) {
       if (res.status !== 200)
         throw new Error('bad response from server' + res.status);
@@ -83,10 +81,15 @@ export function updateScheduleItem(
   description
 ) {
   scheduleId = scheduleId.replace(/['"]+/g, '');
+  const scheduleItem = {
+    scheduleId,
+    itemId,
+    name,
+    time,
+    description
+  };
   return axios
-    .get(
-      `${baseURL}/v1/updateScheduleItem?scheduleId=${scheduleId}&itemId=${itemId}&name=${name}&time=${time}&description=${description}`
-    )
+    .post(`${baseURL}/v1/updateScheduleItem`, scheduleItem)
     .then(function(res) {
       if (res.status !== 200)
         throw new Error('bad response from server' + res.status);
