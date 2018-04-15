@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { addEvent, removeEvent, updateEvent } from '../../action/schedule';
 import { Form, TimePicker, Button, Input, Divider } from 'antd';
 import moment from 'moment';
+import { confirmationModal } from '../components/confirmationModal';
 const FormItem = Form.Item;
 const { TextArea } = Input;
 
@@ -42,7 +43,12 @@ class FormView extends Component {
   };
 
   deleteEvent = () => {
-    this.props.removeEvent(localStorage.getItem('scheduleId'), this.props.eventId);
+    confirmationModal({
+      content: 'Are you sure you wish to delete this schedule?',
+      onOk: () => {
+        this.props.removeEvent(localStorage.getItem('scheduleId'), this.props.eventId);
+      }
+    });
   };
 
   render() {

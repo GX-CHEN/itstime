@@ -6,6 +6,7 @@ import { listSchedule, deleteSchedule } from '../../action/schedule';
 import { map } from 'lodash';
 import { List, Card, Icon, Layout, Divider } from 'antd';
 import Sidebar from '../components/sidebar';
+import { confirmationModal } from '../components/confirmationModal';
 
 class ScheduleList extends React.Component {
   constructor(props) {
@@ -57,6 +58,15 @@ class ScheduleList extends React.Component {
     this.props.changePage('/calendarEvents', { scheduleId: id });
   };
 
+  handleDeleteSchedule = id => {
+    confirmationModal({
+      content: 'Are you sure you wish to delete this schedule?',
+      onOk: () => {
+        this.props.deleteSchedule(id);
+      }
+    });
+  };
+
   render() {
     if (!localStorage.getItem('userId')) {
       this.props.changePage('/');
@@ -91,7 +101,7 @@ class ScheduleList extends React.Component {
                       }}>
                       <p onClick={this.goToAgenda.bind(this, item._id)}>{item.desc}</p>
                       <Icon
-                        onClick={() => this.props.deleteSchedule(item._id)}
+                        onClick={() => this.handleDeleteSchedule(item._id)}
                         type="delete"
                         style={{
                           fontSize: 24,
