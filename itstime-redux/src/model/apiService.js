@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-const baseURL = 'http://biteapie.com:3001';
+// const baseURL = 'http://biteapie.com:3001';
 // const baseURL = 'http://itstime.mobi:3001';
-// const baseURL = "http://localhost:3001"
+const baseURL = 'http://localhost:3001';
 // schedule part
 export function findPersonalSchedules(id) {
   const personId = id.replace(/['"]+/g, '');
@@ -96,21 +96,25 @@ export function updateScheduleItem(
 
 // credential part
 export function registerService(username, password) {
-  return axios
-    .get(`${baseURL}/v1/signup?username=${username}&password=${password}`)
-    .then(function(res) {
-      if (res.status !== 200)
-        throw new Error('bad response from server' + res.status);
-      return res.data;
-    });
+  const user = {
+    username,
+    password
+  };
+  return axios.post(`${baseURL}/v1/signup`, user).then(function(res) {
+    if (res.status !== 200)
+      throw new Error('bad response from server' + res.status);
+    return res.data;
+  });
 }
 
 export function loginService(username, password) {
-  return axios
-    .get(`${baseURL}/v1/login?username=${username}&password=${password}`)
-    .then(function(res) {
-      if (res.status !== 200)
-        throw new Error('bad response from server' + res.status);
-      return res.data;
-    });
+  const user = {
+    username,
+    password
+  };
+  return axios.post(`${baseURL}/v1/login`, user).then(function(res) {
+    if (res.status !== 200)
+      throw new Error('bad response from server' + res.status);
+    return res.data;
+  });
 }

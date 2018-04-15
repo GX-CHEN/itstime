@@ -29,9 +29,9 @@ router.route('/updateScheduleItem')
   .get(updateScheduleItem);
 
 router.route('/login')
-  .get(login);
+  .post(login);
 
 router.route('/signup')
-  .get(signup);
+  .post(signup);
 
 export default router;

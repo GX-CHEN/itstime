@@ -4,7 +4,7 @@ import { populateInitialSchedules } from '../populate_initial_data';
 
 export const signup = async (req, res, next) => {
   await mongoose.connect('mongodb://localhost/itstime');
-  const data = req.query;
+  const data = req.body;
 
   User.find({ username: data.username }, async function (err, docs) {
     if (docs.length) {
@@ -20,7 +20,7 @@ export const signup = async (req, res, next) => {
 
 export const login = async (req, res, next) => {
   await mongoose.connect('mongodb://localhost/itstime');
-  const data = req.query;
+  const data = req.body;
   User.find(data, function (err, docs) {
     if (docs.length) {
       return res.status(200).send(docs[0]._id)
