@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout, Menu, Icon } from 'antd';
+import { Layout, Menu, Icon, Divider } from 'antd';
 const { Sider } = Layout;
 
 class Sidebar extends React.Component {
@@ -8,7 +8,7 @@ class Sidebar extends React.Component {
   };
 
   routeToLogin = () => {
-    localStorage.setItem('userId', "");
+    localStorage.setItem('userId', '');
     this.props.changePage('/');
   };
 
@@ -38,11 +38,16 @@ class Sidebar extends React.Component {
               Add Schedule
             </span>
           </Menu.Item>
-          <Menu.Item key="3" style={{ position: 'absolute', bottom: 20 }}>
+          <Menu.Item key="3" style={{ position: 'absolute', bottom: 60 }}>
             <Icon type="poweroff" style={{ color: 'red' }} />
-            <span className="nav-text" style={{ color: 'red' }} onClick={this.routeToLogin}>
+            <span className="nav-text" style={{ color: 'red', fontSize: 18 }} onClick={this.routeToLogin}>
               Logout
             </span>
+          </Menu.Item>
+          <Menu.Item key="3" style={{ position: 'absolute', bottom: 20, color: 'wheat', fontStyle: 'italic' }}>
+            <Divider style={{color: 'wheat', fontStyle: 'italic' }}>
+              <span className={'nav-text'}>Now or Never</span>
+            </Divider>
           </Menu.Item>
         </Menu>
       </Sider>
