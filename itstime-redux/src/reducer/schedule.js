@@ -4,7 +4,8 @@ import {
   ADD_EVENT_FULFILLED,
   UPDATE_EVENT_FULFILLED,
   REMOVE_EVENT_FULFILLED,
-  ADD_SCHEDULE_FULFILLED
+  ADD_SCHEDULE_FULFILLED,
+  REMOVE_SCHEDULE_FULFILLED
 } from '../const/schedule';
 
 const initialState = {};
@@ -15,7 +16,24 @@ export default (state = initialState, action) => {
     case LIST_SCHEDULE_FULFILLED: {
       return {
         ...state,
-        payload
+        payload,
+        actionStatus: 'list_schedule_succeed'
+      };
+    }
+    case ADD_SCHEDULE_FULFILLED: {
+      return {
+        ...state,
+        payload,
+        actionStatus: 'add_schedule_succeed',
+        nextPage: 'scheduleList'
+      };
+    }
+    case REMOVE_SCHEDULE_FULFILLED: {
+      return {
+        ...state,
+        payload,
+        actionStatus: 'remove_schedule_succeed',
+        nextPage: 'scheduleList'
       };
     }
     case LIST_EVENTS_FULFILLED: {
@@ -46,14 +64,6 @@ export default (state = initialState, action) => {
         payload,
         actionStatus: 'delete_event_succeed',
         nextPage: 'calendarEvents'
-      };
-    }
-    case ADD_SCHEDULE_FULFILLED: {
-      return {
-        ...state,
-        payload,
-        actionStatus: 'add_schedule_succeed',
-        nextPage: 'scheduleList'
       };
     }
     default:

@@ -2,7 +2,7 @@ import React from 'react';
 import { push } from 'react-router-redux';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { listSchedule } from '../../action/schedule';
+import { listSchedule, deleteSchedule } from '../../action/schedule';
 import { map } from 'lodash';
 import { List, Card, Icon, Layout, Divider } from 'antd';
 import Sidebar from '../components/sidebar';
@@ -16,15 +16,7 @@ class ScheduleList extends React.Component {
   }
 
   componentDidMount() {
-    const localStorageUserId = localStorage.getItem('userId');
-    const { location, listSchedule } = this.props;
-    if (location.state && location.state.userId) {
-      listSchedule(location.state.userId);
-    } else if (localStorageUserId) {
-      listSchedule(localStorageUserId);
-    } else {
-      this.props.changePage('/');
-    }
+    this.fetchScheduleList();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -37,12 +29,28 @@ class ScheduleList extends React.Component {
       return { _id, name: scheduleName, desc };
     }
 
-    const { scheduleList } = nextProps;
-    let scheduleListWithDesc = { ...scheduleList };
-    this.setState({
-      scheduleListWithDesc: map(scheduleListWithDesc, getShortDesc)
-    });
+    const { scheduleList, actionStatus } = nextProps;
+    if (actionStatus === 'remove_schedule_succeed') {
+      this.fetchScheduleList();
+    } else {
+      let scheduleListWithDesc = { ...scheduleList };
+      this.setState({
+        scheduleListWithDesc: map(scheduleListWithDesc, getShortDesc)
+      });
+    }
   }
+
+  fetchScheduleList = () => {
+    const localStorageUserId = localStorage.getItem('userId');
+    const { location, listSchedule } = this.props;
+    if (location.state && location.state.userId) {
+      listSchedule(location.state.userId);
+    } else if (localStorageUserId) {
+      listSchedule(localStorageUserId);
+    } else {
+      this.props.changePage('/');
+    }
+  };
 
   goToAgenda = id => {
     localStorage.setItem('scheduleId', id);
@@ -82,6 +90,17 @@ class ScheduleList extends React.Component {
                         overflow: 'hidden'
                       }}>
                       <p onClick={this.goToAgenda.bind(this, item._id)}>{item.desc}</p>
+                      <Icon
+                        onClick={() => this.props.deleteSchedule(item._id)}
+                        type="delete"
+                        style={{
+                          fontSize: 24,
+                          color: 'red',
+                          position: 'absolute',
+                          bottom: 18,
+                          right: 18
+                        }}
+                      />
                     </Card>
                   </List.Item>
                 )}
@@ -107,6 +126,7 @@ class ScheduleList extends React.Component {
 
 const mapStateToProps = state => {
   return {
+    actionStatus: state.schedule.actionStatus,
     scheduleList: state.schedule.payload,
     userId: state.credential.payload
   };
@@ -116,6 +136,7 @@ const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
       listSchedule,
+      deleteSchedule,
       changePage: (route, params) => push(route, params)
     },
     dispatch
