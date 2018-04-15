@@ -8,6 +8,7 @@ class Sidebar extends React.Component {
   };
 
   routeToLogin = () => {
+    localStorage.setItem('userId', "");
     this.props.changePage('/');
   };
 

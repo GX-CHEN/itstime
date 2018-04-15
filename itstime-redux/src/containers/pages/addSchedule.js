@@ -80,6 +80,10 @@ class AddSchedule extends Component {
   }
 
   render() {
+    if (!localStorage.getItem('userId')) {
+      this.props.changePage('/');
+    }
+
     const { name, scheduleId } = this.state;
     return (
       <WrappredAddScheduleForm

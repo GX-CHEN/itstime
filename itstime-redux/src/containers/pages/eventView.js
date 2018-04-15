@@ -117,8 +117,7 @@ class EventView extends Component {
     }
   }
 
-  async componentDidMount() {
-    const localStorageScheduleId = await localStorage.getItem('scheduleId');
+  componentDidMount() {
     const { location } = this.props;
 
     if (location.state) {
@@ -138,6 +137,10 @@ class EventView extends Component {
   }
 
   render() {
+    if (!localStorage.getItem('userId')) {
+      this.props.changePage('/');
+    }
+
     const { name, eventId, description, time, actionType } = this.state;
     return (
       <WrappedTimeRelatedForm

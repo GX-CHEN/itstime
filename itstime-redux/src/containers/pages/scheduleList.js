@@ -15,8 +15,8 @@ class ScheduleList extends React.Component {
     };
   }
 
-  async componentDidMount() {
-    const localStorageUserId = await localStorage.getItem('userId');
+  componentDidMount() {
+    const localStorageUserId = localStorage.getItem('userId');
     const { location, listSchedule } = this.props;
     if (location.state && location.state.userId) {
       listSchedule(location.state.userId);
@@ -50,6 +50,10 @@ class ScheduleList extends React.Component {
   };
 
   render() {
+    if (!localStorage.getItem('userId')) {
+      this.props.changePage('/');
+    }
+
     return (
       <Layout className="full-height">
         <Sidebar changePage={this.props.changePage} />

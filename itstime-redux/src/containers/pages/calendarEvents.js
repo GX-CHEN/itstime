@@ -20,8 +20,8 @@ class CalendarEvents extends React.Component {
     };
   }
 
-  async componentDidMount() {
-    const localStorageScheduleId = await localStorage.getItem('scheduleId');
+  componentDidMount() {
+    const localStorageScheduleId = localStorage.getItem('scheduleId');
     const { location, listEvent } = this.props;
     if (location.state && location.state.scheduleId) {
       listEvent(location.state.scheduleId);
@@ -53,6 +53,10 @@ class CalendarEvents extends React.Component {
   };
 
   render() {
+    if (!localStorage.getItem('userId')) {
+      this.props.changePage('/');
+    }
+
     return (
       <div>
         <Layout className="full-height">
