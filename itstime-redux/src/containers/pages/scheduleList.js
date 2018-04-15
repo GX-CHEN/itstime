@@ -99,7 +99,7 @@ class ScheduleList extends React.Component {
                         minWidth: 240,
                         overflow: 'hidden'
                       }}>
-                      <p onClick={this.goToAgenda.bind(this, item._id)}>{item.desc}</p>
+                      <p onClick={this.goToAgenda.bind(this, item._id)}>{item.desc || 'Nothing now :) Add your events.'}</p>
                       <Icon
                         onClick={() => this.handleDeleteSchedule(item._id)}
                         type="delete"

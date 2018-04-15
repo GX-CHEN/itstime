@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout, Menu, Icon, Divider } from 'antd';
+import { Layout, Menu, Icon } from 'antd';
 const { Sider } = Layout;
 
 class Sidebar extends React.Component {
@@ -44,10 +44,10 @@ class Sidebar extends React.Component {
               Logout
             </span>
           </Menu.Item>
-          <Menu.Item key="3" style={{ position: 'absolute', bottom: 20, color: 'wheat', fontStyle: 'italic' }}>
-            <Divider style={{color: 'wheat', fontStyle: 'italic' }}>
-              <span className={'nav-text'}>Now or Never</span>
-            </Divider>
+          <Menu.Item key="3" style={{ position: 'absolute', bottom: 20 }}>
+            <span className={'nav-text'} style={{ color: 'wheat', fontStyle: 'italic', fontSize: 14 }}>
+              It is time! Rise and Shine!
+            </span>
           </Menu.Item>
         </Menu>
       </Sider>
