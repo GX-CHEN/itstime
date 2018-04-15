@@ -84,6 +84,17 @@ class ScheduleList extends React.Component {
               />
             </div>
           </div>
+          <Icon
+            onClick={() => this.props.changePage('addSchedule')}
+            type="plus-circle"
+            style={{
+              fontSize: 40,
+              color: 'rgba(0, 136, 204, 0.8)',
+              position: 'fixed',
+              bottom: 18,
+              right: 18
+            }}
+          />
         </Layout>
       </Layout>
     );

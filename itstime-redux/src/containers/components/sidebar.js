@@ -11,7 +11,9 @@ class Sidebar extends React.Component {
     this.props.changePage('/');
   };
 
-  routeToAddSchedule = () => {};
+  routeToAddSchedule = () => {
+    this.props.changePage('/addSchedule');
+  };
   render() {
     return (
       <Sider

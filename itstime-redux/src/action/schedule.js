@@ -1,10 +1,12 @@
-import { LIST_SCHEDULE, LIST_EVENTS, ADD_EVENT, UPDATE_EVENT, REMOVE_EVENT } from '../const/schedule';
+import { LIST_SCHEDULE, LIST_EVENTS, ADD_EVENT, UPDATE_EVENT, REMOVE_EVENT, ADD_SCHEDULE, REMOVE_SCHEDULE } from '../const/schedule';
 import {
   findPersonalSchedules,
   findSingleSchedule,
   addScheduleItem,
   removeScheduleItem,
-  updateScheduleItem
+  updateScheduleItem,
+  addSchedule,
+  removeSchedule
 } from '../model/apiService';
 
 export const listSchedule = userId => {
@@ -48,6 +50,25 @@ export const removeEvent = (scheduleId, eventId) => {
     dispatch({
       type: REMOVE_EVENT,
       payload: removeScheduleItem(scheduleId, eventId)
+    });
+  };
+};
+
+export const createSchedule = (userId, name) => {
+  return dispatch => {
+    dispatch({
+      type: ADD_SCHEDULE,
+      payload: addSchedule(userId, name)
+    });
+  };
+};
+
+
+export const deleteSchedule = (scheduleId) => {
+  return dispatch => {
+    dispatch({
+      type: REMOVE_SCHEDULE,
+      payload: removeSchedule(scheduleId)
     });
   };
 };

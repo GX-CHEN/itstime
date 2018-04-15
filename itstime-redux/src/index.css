@@ -21,7 +21,8 @@ button:disabled {
 }
 
 .login-form,
-.event-view-form {
+.event-view-form,
+.schedule-view-form {
   min-width: 250px;
   max-width: 350px;
   margin: auto;

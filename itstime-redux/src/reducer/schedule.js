@@ -3,7 +3,9 @@ import {
   LIST_EVENTS_FULFILLED,
   ADD_EVENT_FULFILLED,
   UPDATE_EVENT_FULFILLED,
-  REMOVE_EVENT_FULFILLED
+  REMOVE_EVENT_FULFILLED,
+  ADD_SCHEDULE_FULFILLED,
+  REMOVE_SCHEDULE_FULFILLED
 } from '../const/schedule';
 
 const initialState = {};
@@ -45,6 +47,14 @@ export default (state = initialState, action) => {
         payload,
         actionStatus: 'delete_event_succeed',
         nextPage: 'calendarEvents'
+      };
+    }
+    case ADD_SCHEDULE_FULFILLED: {
+      return {
+        ...state,
+        payload,
+        actionStatus: 'add_schedule_succeed',
+        nextPage: 'scheduleList'
       };
     }
     default:
