@@ -1,5 +1,6 @@
 import React from 'react';
 import { Layout, Menu, Icon } from 'antd';
+import { confirmationModal } from '../components/confirmationModal';
 const { Sider } = Layout;
 
 class Sidebar extends React.Component {
@@ -7,14 +8,21 @@ class Sidebar extends React.Component {
     this.props.changePage('/scheduleList');
   };
 
-  routeToLogin = () => {
-    localStorage.setItem('userId', '');
-    this.props.changePage('/');
+  handleLogout = () => {
+    confirmationModal({
+      title: "Confirm Logut",
+      content: 'Are you sure to logout?',
+      onOk: () => {
+        localStorage.setItem('userId', '');
+        this.props.changePage('/');
+      }
+    });
   };
 
   routeToAddSchedule = () => {
     this.props.changePage('/addSchedule');
   };
+
   render() {
     return (
       <Sider
@@ -38,15 +46,10 @@ class Sidebar extends React.Component {
               Add Schedule
             </span>
           </Menu.Item>
-          <Menu.Item key="3" style={{ position: 'absolute', bottom: 60 }}>
+          <Menu.Item key="3" style={{ position: 'absolute', bottom: 25 }}>
             <Icon type="poweroff" style={{ color: 'red' }} />
-            <span className="nav-text" style={{ color: 'red', fontSize: 18 }} onClick={this.routeToLogin}>
+            <span className="nav-text" style={{ color: 'red', fontSize: 18 }} onClick={this.handleLogout}>
               Logout
-            </span>
-          </Menu.Item>
-          <Menu.Item key="3" style={{ position: 'absolute', bottom: 20 }}>
-            <span className={'nav-text'} style={{ color: 'wheat', fontStyle: 'italic', fontSize: 14 }}>
-              It is time! Rise and Shine!
             </span>
           </Menu.Item>
         </Menu>
