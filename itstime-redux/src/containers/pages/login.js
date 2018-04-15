@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { login } from '../../action/credential';
 import { includes } from 'lodash';
-import { Form, Icon, Input, Button, Checkbox, message } from 'antd';
+import { Form, Icon, Input, Button, Divider, message } from 'antd';
 const FormItem = Form.Item;
 
 class NormalLoginForm extends React.Component {
@@ -23,6 +23,16 @@ class NormalLoginForm extends React.Component {
 
     return (
       <Form onSubmit={this.handleSubmit} className="login-form">
+        <Divider
+          style={{
+            fontSize: 22,
+            textAlign: 'center',
+            color: 'rgba(0, 0, 0, 0.65)',
+            fontWeight: 400,
+            marginBottom: 40
+          }}>
+          Add Schedule
+        </Divider>
         <FormItem>
           {getFieldDecorator('userName', {
             rules: [{ required: true, message: 'Please input your username!' }]
@@ -40,13 +50,6 @@ class NormalLoginForm extends React.Component {
           )}
         </FormItem>
         <FormItem>
-          {getFieldDecorator('remember', {
-            valuePropName: 'checked',
-            initialValue: true
-          })(<Checkbox>Remember me</Checkbox>)}
-          <a className="login-form-forgot" href="">
-            Forgot password
-          </a>
           <Button type="primary" htmlType="submit" className="login-form-button">
             Log in
           </Button>

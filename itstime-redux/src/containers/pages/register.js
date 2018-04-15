@@ -35,7 +35,8 @@ class NormalRegisterForm extends React.Component {
             fontSize: 22,
             textAlign: 'center',
             color: 'rgba(0, 0, 0, 0.65)',
-            fontWeight: 400
+            fontWeight: 400,
+            marginBottom: 40
           }}>
           Register
         </Divider>
