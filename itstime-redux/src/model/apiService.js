@@ -4,7 +4,7 @@ import axios from 'axios';
 const baseURL = 'http://itstime.mobi:3001';
 // const baseURL = 'http://localhost:3001';
 // schedule part
-export function findPersonalSchedules(id) {
+export function listScheduleService(id) {
   const personId = id.replace(/['"]+/g, '');
   return axios.get(`${baseURL}/v1/personalSchedules?id=${personId}`).then(function(res) {
     if (res.status !== 200) throw new Error('bad response from server' + res.status);
@@ -12,7 +12,7 @@ export function findPersonalSchedules(id) {
   });
 }
 
-export function findSingleSchedule(scheduleId) {
+export function listEventService(scheduleId) {
   scheduleId = scheduleId.replace(/['"]+/g, '');
   return axios.get(`${baseURL}/v1/schedule?id=${scheduleId}`).then(function(res) {
     if (res.status !== 200) throw new Error('bad response from server' + res.status);
@@ -20,7 +20,7 @@ export function findSingleSchedule(scheduleId) {
   });
 }
 
-export function removeSchedule(scheduleId) {
+export function removeScheduleService(scheduleId) {
   scheduleId = scheduleId.replace(/['"]+/g, '');
   return axios.get(`${baseURL}/v1/removeSchedule?id=${scheduleId}`).then(function(res) {
     if (res.status !== 200) throw new Error('bad response from server' + res.status);
@@ -28,7 +28,7 @@ export function removeSchedule(scheduleId) {
   });
 }
 
-export function addSchedule(personId, name) {
+export function addScheduleService(personId, name) {
   personId = personId.replace(/['"]+/g, '');
   return axios.get(`${baseURL}/v1/addSchedule?personId=${personId}&name=${name}`).then(function(res) {
     if (res.status !== 200) throw new Error('bad response from server' + res.status);
@@ -36,7 +36,7 @@ export function addSchedule(personId, name) {
   });
 }
 
-export function removeScheduleItem(scheduleId, itemId) {
+export function removeEventService(scheduleId, itemId) {
   scheduleId = scheduleId.replace(/['"]+/g, '');
   itemId = itemId.replace(/['"]+/g, '');
   const scheduleItem = { scheduleId, itemId };
@@ -46,7 +46,7 @@ export function removeScheduleItem(scheduleId, itemId) {
   });
 }
 
-export function addScheduleItem(scheduleId, name, time, description) {
+export function addEventService(scheduleId, name, time, description) {
   scheduleId = scheduleId.replace(/['"]+/g, '');
   const scheduleItem = { scheduleId, name, time, description };
   return axios.post(`${baseURL}/v1/addScheduleItem`, scheduleItem).then(function(res) {
@@ -55,7 +55,7 @@ export function addScheduleItem(scheduleId, name, time, description) {
   });
 }
 
-export function updateScheduleItem(scheduleId, itemId, name, time, description) {
+export function updateEventService(scheduleId, itemId, name, time, description) {
   scheduleId = scheduleId.replace(/['"]+/g, '');
   const scheduleItem = {
     scheduleId,

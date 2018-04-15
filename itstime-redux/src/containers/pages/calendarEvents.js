@@ -2,7 +2,7 @@ import React from 'react';
 import { push } from 'react-router-redux';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { getSingleSchedule } from '../../action/schedule';
+import { listEvent } from '../../action/schedule';
 import { map } from 'lodash';
 import { Icon, Layout, Divider } from 'antd';
 import Sidebar from '../components/sidebar';
@@ -22,11 +22,11 @@ class CalendarEvents extends React.Component {
 
   async componentDidMount() {
     const localStorageScheduleId = await localStorage.getItem('scheduleId');
-    const { location, getSingleSchedule } = this.props;
+    const { location, listEvent } = this.props;
     if (location.state && location.state.scheduleId) {
-      getSingleSchedule(location.state.scheduleId);
+      listEvent(location.state.scheduleId);
     } else if (localStorageScheduleId) {
-      getSingleSchedule(localStorageScheduleId);
+      listEvent(localStorageScheduleId);
     }
   }
 
@@ -112,7 +112,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      getSingleSchedule,
+      listEvent,
       changePage: (route, params) => push(route, params)
     },
     dispatch

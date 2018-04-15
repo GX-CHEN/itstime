@@ -62,7 +62,7 @@ class FormView extends Component {
   }
 }
 
-const WrappedTimeRelatedForm = Form.create()(FormView);
+const WrappredAddScheduleForm = Form.create()(FormView);
 
 class AddSchedule extends Component {
   constructor(props) {
@@ -82,7 +82,7 @@ class AddSchedule extends Component {
   render() {
     const { name, scheduleId } = this.state;
     return (
-      <WrappedTimeRelatedForm
+      <WrappredAddScheduleForm
         className="form-wrapper"
         changePage={this.props.changePage}
         name={name}
