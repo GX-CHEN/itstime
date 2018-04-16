@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-// const baseURL = 'http://biteapie.com:3001';
-const baseURL = 'http://itstime.mobi:3001';
+const baseURL = 'http://biteapie.com:3001';
+// const baseURL = 'http://itstime.mobi:3001';
 // const baseURL = 'http://localhost:3001';
 // schedule part
 export function listScheduleService(id) {
