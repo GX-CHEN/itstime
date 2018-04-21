@@ -1,4 +1,4 @@
-import { LOGIN_FULFILLED, REGISTER_FULFILLED } from '../const/credential';
+import { LOGIN_FULFILLED, LOGOUT_FULFILLED, REGISTER_FULFILLED } from '../const/credential';
 
 const initialState = {};
 
@@ -11,6 +11,9 @@ export default (state = initialState, action) => {
         payload,
         nextPage: 'scheduleList'
       };
+    }
+    case LOGOUT_FULFILLED: {
+      return {};
     }
     case REGISTER_FULFILLED: {
       return {

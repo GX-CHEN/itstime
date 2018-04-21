@@ -1,9 +1,9 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import { Form, Icon, Input, Button, message, Divider } from 'antd';
 import { register } from '../../action/credential';
-import { connect } from 'react-redux';
 import { includes } from 'lodash';
 const FormItem = Form.Item;
 

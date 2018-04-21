@@ -1,5 +1,14 @@
-import { LOGIN, REGISTER } from '../const/credential';
+import { LOGIN, LOGOUT, REGISTER } from '../const/credential';
 import { loginService, registerService } from '../model/apiService';
+
+export const register = (username, password) => {
+  return dispatch => {
+    return dispatch({
+      type: REGISTER,
+      payload: registerService(username, password)
+    });
+  };
+};
 
 export const login = (username, password) => {
   return dispatch => {
@@ -10,11 +19,11 @@ export const login = (username, password) => {
   };
 };
 
-export const register = (username, password) => {
+export const logout = () => {
   return dispatch => {
-    return dispatch({
-      type: REGISTER,
-      payload: registerService(username, password)
+    dispatch({
+      type: LOGOUT,
+      payload: loginService(null, null)
     });
   };
 };

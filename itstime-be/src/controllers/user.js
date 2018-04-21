@@ -40,7 +40,7 @@ export const login = async (req, res, next) => {
     if (err) {
       return res.status(200).send('login fail, something went wrong');
     } else if (!user) {
-      return res.status(200).send('login fail, user not exist');
+      return res.status(200).send(`login fail, user ${username} not exist`);
     } else {
       bcrypt.compare(password, user.password, function(err, result) {
         if (result === true) {

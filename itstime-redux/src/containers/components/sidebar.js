@@ -1,6 +1,9 @@
 import React from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import { Layout, Menu, Icon } from 'antd';
 import { confirmationModal } from '../components/confirmationModal';
+import { logout } from '../../action/credential';
 const { Sider } = Layout;
 
 class Sidebar extends React.Component {
@@ -10,9 +13,10 @@ class Sidebar extends React.Component {
 
   handleLogout = () => {
     confirmationModal({
-      title: "Confirm Logut",
+      title: 'Confirm Logut',
       content: 'Are you sure to logout?',
       onOk: () => {
+        this.props.logout();
         localStorage.setItem('userId', '');
         this.props.changePage('/');
       }
@@ -58,4 +62,18 @@ class Sidebar extends React.Component {
   }
 }
 
-export default Sidebar;
+const mapStateToProps = state => {
+  return {
+    userId: state.credential.payload
+  };
+};
+
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      logout
+    },
+    dispatch
+  );
+
+export default connect(mapStateToProps, mapDispatchToProps)(Sidebar);
