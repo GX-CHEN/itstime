@@ -67,6 +67,10 @@ button:disabled {
   font-size: 16px;
 }
 
+.ant-menu-item-selected {
+  background-color: transparent !important;
+}
+
 .logo {
   min-height: 40px;
   padding: 10px;
