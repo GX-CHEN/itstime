@@ -2,22 +2,6 @@ import Schedule from '../models/schedules';
 import User from '../models/user';
 import mongoose from 'mongoose';
 
-export const allSchedules = async (req, res, next) => {
-  await mongoose.connect('mongodb://localhost/itstime');
-
-  return Schedule.find().lean().exec(async (err, schedules) => {
-    mongoose.connection.close();
-    return res.json(
-      {
-        schedules: schedules.map(schedule => ({
-          ...schedule
-        }))
-      }
-    )
-  }
-  );
-};
-
 export const personalSchedules = async (req, res, next) => {
   await mongoose.connect('mongodb://localhost/itstime');
   const personId = req.query.id;

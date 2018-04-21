@@ -1,6 +1,5 @@
 import { Router } from "express";
 import {
-  allSchedules,
   getSchedule,
   removeSchedule,
   addSchedule,
@@ -12,8 +11,6 @@ import {
 import { signup, login } from "./controllers/user";
 
 const router = Router();
-
-router.route("/allSchedules").get(allSchedules);
 
 router.route("/personalSchedules").get(personalSchedules);
 
