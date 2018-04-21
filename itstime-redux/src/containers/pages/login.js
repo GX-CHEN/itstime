@@ -31,7 +31,7 @@ class NormalLoginForm extends React.Component {
             fontWeight: 400,
             marginBottom: 40
           }}>
-          Add Schedule
+          Login
         </Divider>
         <FormItem>
           {getFieldDecorator('userName', {
