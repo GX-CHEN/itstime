@@ -3,9 +3,9 @@
   "short_name": "itstime",
   "theme_color": "#2196f3",
   "background_color": "#bae0fe",
-  "display": "fullscreen",
+  "display": "standalone",
   "Scope": "/",
-  "start_url": "/index.html",
+  "start_url": "/",
   "icons": [
     {
       "src": "images/icons/icon-72x72.png",
