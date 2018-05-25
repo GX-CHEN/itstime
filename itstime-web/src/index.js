@@ -8,6 +8,7 @@ import App from './containers/app';
 import 'sanitize.css/sanitize.css';
 import 'antd/dist/antd.css';
 import './index.css';
+import registerServiceWorker from './registerServiceWorker';
 
 const target = document.querySelector('#root');
 
@@ -21,3 +22,5 @@ render(
   </Provider>,
   target
 );
+
+registerServiceWorker();
