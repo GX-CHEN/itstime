@@ -1,5 +1,5 @@
 {
-  "name": "create-react-app-redux",
+  "name": "itstime",
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
@@ -33,7 +33,7 @@
     "eject": "react-scripts eject",
     "precommit": "lint-staged"
   },
-  "homepage": "https://cra-redux-router-thunk.herokuapp.com",
+  "homepage": "itstime.mobi",
   "lint-staged": {
     "*.{js,json,css,md}": [
       "prettier --write",

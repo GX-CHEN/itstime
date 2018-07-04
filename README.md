@@ -1,8 +1,19 @@
-### Use the following commands to build and run the app
+# itstime (It's time)
 
-## In local
+An web application to manage daily plan and schedule. Support for view on mobile, and export with app icon on phone screens.
+
+## Demo Website
+
+https://itstime.mobi
+Demo Account: test/test
+You can also register an account, no email or personal info are required. Totally free and anonymous
+
+## Use the following commands to build and run the app
+
+### In local
+
 npm install -g nodemon
-npm install -g server 
+npm install -g server
 
 cd itstime-be
 npm install
@@ -13,10 +24,12 @@ npm install
 cd ../itstime-web
 npm install
 
-# global command to host all the files
+### global command to host all the files
+
 npm start
 
-# to server the React file in production mode
+### to server the React file in production mode
+
 For environments using Node, the easiest way to handle this would be to install serve and let it handle the rest:
 
 npm install -g serve
