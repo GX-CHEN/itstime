@@ -34,7 +34,7 @@
     "eject": "react-scripts eject",
     "precommit": "lint-staged"
   },
-  "homepage": "itstime.mobi",
+  "homepage": "https://itstime.mobi",
   "lint-staged": {
     "*.{js,json,css,md}": [
       "prettier --write",
