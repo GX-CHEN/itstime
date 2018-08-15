@@ -1,6 +1,6 @@
 import {
   LIST_SCHEDULE_FULFILLED,
-  LIST_EVENTS_FULFILLED,
+  LIST_EVENT_FULFILLED,
   ADD_EVENT_FULFILLED,
   UPDATE_EVENT_FULFILLED,
   REMOVE_EVENT_FULFILLED,
@@ -36,7 +36,7 @@ export default (state = initialState, action) => {
         nextPage: 'scheduleList'
       };
     }
-    case LIST_EVENTS_FULFILLED: {
+    case LIST_EVENT_FULFILLED: {
       return {
         ...state,
         payload
