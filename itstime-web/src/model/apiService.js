@@ -29,7 +29,7 @@ export function removeScheduleService(scheduleId) {
 }
 
 export function addScheduleService(personId, name) {
-  personId = personId ? personId.replace(/['"]+/g, '') : null;
+  personId = personId ? personId.replace(/['"]+/g, '') : '';
   return axios.post(`${baseURL}/v1/addSchedule`, { personId, name }).then(function(res) {
     if (res.status !== 200) throw new Error('bad response from server' + res.status);
     return res.data;
@@ -38,7 +38,7 @@ export function addScheduleService(personId, name) {
 
 export function removeEventService(scheduleId, itemId) {
   scheduleId = scheduleId ? scheduleId.replace(/['"]+/g, '') : '';
-  itemId = itemId.replace(/['"]+/g, '');
+  itemId = itemId ? itemId.replace(/['"]+/g, '') : '';
   const scheduleItem = { scheduleId, itemId };
   return axios.post(`${baseURL}/v1/removeScheduleItem`, scheduleItem).then(function(res) {
     if (res.status !== 200) throw new Error('bad response from server' + res.status);

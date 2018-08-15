@@ -1,6 +1,6 @@
 import {
   LIST_SCHEDULE,
-  LIST_EVENTS,
+  LIST_EVENT,
   ADD_EVENT,
   UPDATE_EVENT,
   REMOVE_EVENT,
@@ -28,7 +28,7 @@ export const listSchedule = userId => {
 export const listEvent = scheduleId => {
   return dispatch =>
     dispatch({
-      type: LIST_EVENTS,
+      type: LIST_EVENT,
       payload: listEventService(scheduleId)
     });
 };
