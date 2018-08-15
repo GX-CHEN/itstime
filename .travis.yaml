@@ -1,5 +1,7 @@
 language: node_js
 node_js:
   - "8"
+before_script:
+  - cd cd itstime-web
 script:
-  - cd itstime-web & npm test
+  - npm test
