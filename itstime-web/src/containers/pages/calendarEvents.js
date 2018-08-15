@@ -1,4 +1,4 @@
-import "babel-polyfill";
+import 'babel-polyfill';
 
 import React from 'react';
 import { push } from 'react-router-redux';
@@ -11,6 +11,7 @@ import Sidebar from '../components/sidebar';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import BigCalendar from 'react-big-calendar';
 import moment from 'moment';
+import PropTypes from 'prop-types';
 
 BigCalendar.momentLocalizer(moment);
 
@@ -108,6 +109,12 @@ class CalendarEvents extends React.Component {
   }
 }
 
+CalendarEvents.propTypes = {
+  location: PropTypes.object,
+  changePage: PropTypes.func,
+  listEvent: PropTypes.func
+};
+
 const mapStateToProps = state => {
   return {
     singleSchedule: state.schedule.payload,
@@ -124,4 +131,7 @@ const mapDispatchToProps = dispatch =>
     dispatch
   );
 
-export default connect(mapStateToProps, mapDispatchToProps)(CalendarEvents);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(CalendarEvents);

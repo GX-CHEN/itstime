@@ -7,9 +7,6 @@ import CalendarEvents from '../pages/calendarEvents';
 import AddSchedule from '../pages/addSchedule';
 import EventView from '../pages/eventView';
 
-// <header>
-// <Link to="/">Login</Link>
-// </header>
 const App = () => (
   <div>
     <main>

@@ -5,6 +5,8 @@ import { push } from 'react-router-redux';
 import { Form, Icon, Input, Button, message, Divider } from 'antd';
 import { register } from '../../action/credential';
 import { includes } from 'lodash';
+import PropTypes from 'prop-types';
+
 const FormItem = Form.Item;
 
 class NormalRegisterForm extends React.Component {
@@ -103,6 +105,20 @@ class Register extends React.Component {
   }
 }
 
+NormalRegisterForm.propTypes = {
+  location: PropTypes.object,
+  changePage: PropTypes.func,
+  form: PropTypes.object,
+  register: PropTypes.func
+};
+
+Register.propTypes = {
+  location: PropTypes.object,
+  changePage: PropTypes.func,
+  userId: PropTypes.string,
+  register: PropTypes.func
+};
+
 const mapStateToProps = state => {
   return {
     userId: state.credential.payload,
@@ -119,4 +135,7 @@ const mapDispatchToProps = dispatch =>
     dispatch
   );
 
-export default connect(mapStateToProps, mapDispatchToProps)(Register);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Register);
