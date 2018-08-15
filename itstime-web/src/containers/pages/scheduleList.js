@@ -7,6 +7,7 @@ import { map } from 'lodash';
 import { List, Card, Icon, Layout, Divider } from 'antd';
 import Sidebar from '../components/sidebar';
 import { confirmationModal } from '../components/confirmationModal';
+import PropTypes from 'prop-types';
 
 class ScheduleList extends React.Component {
   constructor(props) {
@@ -99,7 +100,9 @@ class ScheduleList extends React.Component {
                         minWidth: 240,
                         overflow: 'hidden'
                       }}>
-                      <p onClick={this.goToAgenda.bind(this, item._id)}>{item.desc || 'Nothing now :) Add your events.'}</p>
+                      <p onClick={this.goToAgenda.bind(this, item._id)}>
+                        {item.desc || 'Nothing now :) Add your events.'}
+                      </p>
                       <Icon
                         onClick={() => this.handleDeleteSchedule(item._id)}
                         type="delete"
@@ -134,6 +137,14 @@ class ScheduleList extends React.Component {
   }
 }
 
+ScheduleList.propTypes = {
+  location: PropTypes.object,
+  changePage: PropTypes.func,
+  actionStatus: PropTypes.string,
+  listSchedule: PropTypes.func,
+  deleteSchedule: PropTypes.func
+};
+
 const mapStateToProps = state => {
   return {
     actionStatus: state.schedule.actionStatus,
@@ -152,4 +163,7 @@ const mapDispatchToProps = dispatch =>
     dispatch
   );
 
-export default connect(mapStateToProps, mapDispatchToProps)(ScheduleList);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ScheduleList);

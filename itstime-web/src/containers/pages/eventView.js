@@ -6,6 +6,8 @@ import { addEvent, removeEvent, updateEvent } from '../../action/schedule';
 import { Form, TimePicker, Button, Input, Divider } from 'antd';
 import moment from 'moment';
 import { confirmationModal } from '../components/confirmationModal';
+import PropTypes from 'prop-types';
+
 const FormItem = Form.Item;
 const { TextArea } = Input;
 
@@ -103,6 +105,21 @@ class FormView extends Component {
   }
 }
 
+FormView.propTypes = {
+  location: PropTypes.object,
+  changePage: PropTypes.func,
+  nextPage: PropTypes.string,
+  form: PropTypes.object,
+  time: PropTypes.string,
+  description: PropTypes.string,
+  name: PropTypes.string,
+  actionType: PropTypes.string,
+  eventId: PropTypes.string,
+  addEvent: PropTypes.func,
+  updateEvent: PropTypes.func,
+  removeEvent: PropTypes.func
+};
+
 const WrappedTimeRelatedForm = Form.create()(FormView);
 
 class EventView extends Component {
@@ -165,6 +182,15 @@ class EventView extends Component {
   }
 }
 
+EventView.propTypes = {
+  location: PropTypes.object,
+  changePage: PropTypes.func,
+  nextPage: PropTypes.string,
+  addEvent: PropTypes.func,
+  updateEvent: PropTypes.func,
+  removeEvent: PropTypes.func
+};
+
 const mapStateToProps = state => {
   return {
     nextPage: state.schedule.nextPage,
@@ -184,4 +210,7 @@ const mapDispatchToProps = dispatch =>
     dispatch
   );
 
-export default connect(mapStateToProps, mapDispatchToProps)(EventView);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(EventView);

@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { Layout, Menu, Icon } from 'antd';
 import { confirmationModal } from '../components/confirmationModal';
 import { logout } from '../../action/credential';
+import PropTypes from 'prop-types';
+
 const { Sider } = Layout;
 
 class Sidebar extends React.Component {
@@ -13,7 +15,7 @@ class Sidebar extends React.Component {
 
   handleLogout = () => {
     confirmationModal({
-      title: 'Confirm Logut',
+      title: 'Confirm Logout',
       content: 'Are you sure to logout?',
       onOk: () => {
         this.props.logout();
@@ -29,13 +31,7 @@ class Sidebar extends React.Component {
 
   render() {
     return (
-      <Sider
-        breakpoint="lg"
-        collapsedWidth="0"
-        // onCollapse={(collapsed, type) => {
-        //   console.log(collapsed, type);
-        // }}
-      >
+      <Sider breakpoint="lg" collapsedWidth="0">
         <div className="logo">ITS TIME</div>
         <Menu theme="dark" mode="inline" defaultSelectedKeys={['4']}>
           <Menu.Item key="1">
@@ -62,6 +58,12 @@ class Sidebar extends React.Component {
   }
 }
 
+Sidebar.propTypes = {
+  location: PropTypes.object,
+  changePage: PropTypes.func,
+  logout: PropTypes.func
+};
+
 const mapStateToProps = state => {
   return {
     userId: state.credential.payload
@@ -76,4 +78,7 @@ const mapDispatchToProps = dispatch =>
     dispatch
   );
 
-export default connect(mapStateToProps, mapDispatchToProps)(Sidebar);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Sidebar);

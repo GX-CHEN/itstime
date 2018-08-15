@@ -4,6 +4,8 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { createSchedule, deleteSchedule } from '../../action/schedule';
 import { Form, Button, Input, Divider } from 'antd';
+import PropTypes from 'prop-types';
+
 const FormItem = Form.Item;
 
 class FormView extends Component {
@@ -62,7 +64,15 @@ class FormView extends Component {
   }
 }
 
-const WrappredAddScheduleForm = Form.create()(FormView);
+FormView.propTypes = {
+  location: PropTypes.object,
+  changePage: PropTypes.func,
+  form: PropTypes.object,
+  createSchedule: PropTypes.func,
+  name: PropTypes.string
+};
+
+const WrappedAddScheduleForm = Form.create()(FormView);
 
 class AddSchedule extends Component {
   constructor(props) {
@@ -86,7 +96,7 @@ class AddSchedule extends Component {
 
     const { name, scheduleId } = this.state;
     return (
-      <WrappredAddScheduleForm
+      <WrappedAddScheduleForm
         className="form-wrapper"
         changePage={this.props.changePage}
         name={name}
@@ -96,6 +106,13 @@ class AddSchedule extends Component {
     );
   }
 }
+
+AddSchedule.propTypes = {
+  location: PropTypes.object,
+  changePage: PropTypes.func,
+  nextPage: PropTypes.string,
+  createSchedule: PropTypes.func
+};
 
 const mapStateToProps = state => {
   return {
@@ -115,4 +132,7 @@ const mapDispatchToProps = dispatch =>
     dispatch
   );
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddSchedule);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(AddSchedule);

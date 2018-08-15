@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import { login } from '../../action/credential';
 import { includes } from 'lodash';
 import { Form, Icon, Input, Button, Divider, message } from 'antd';
+import PropTypes from 'prop-types';
+
 const FormItem = Form.Item;
 
 class NormalLoginForm extends React.Component {
@@ -96,6 +98,20 @@ class Login extends React.Component {
   }
 }
 
+NormalLoginForm.propTypes = {
+  location: PropTypes.object,
+  changePage: PropTypes.func,
+  form: PropTypes.object,
+  login: PropTypes.func
+};
+
+Login.propTypes = {
+  location: PropTypes.object,
+  changePage: PropTypes.func,
+  userId: PropTypes.string,
+  login: PropTypes.func
+};
+
 const mapStateToProps = state => {
   return {
     userId: state.credential.payload,
@@ -112,4 +128,7 @@ const mapDispatchToProps = dispatch =>
     dispatch
   );
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Login);
