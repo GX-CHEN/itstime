@@ -5,7 +5,7 @@ import axios from 'axios';
 const baseURL = 'http://localhost:3001';
 // schedule part
 export function listScheduleService(id) {
-  const personId = id.replace(/['"]+/g, '');
+  const personId = id ? id.replace(/['"]+/g, '') : '';
   return axios.get(`${baseURL}/v1/personalSchedules?id=${personId}`).then(function(res) {
     if (res.status !== 200) throw new Error('bad response from server' + res.status);
     return res.data;
@@ -13,7 +13,7 @@ export function listScheduleService(id) {
 }
 
 export function listEventService(scheduleId) {
-  scheduleId = scheduleId.replace(/['"]+/g, '');
+  scheduleId = scheduleId ? scheduleId.replace(/['"]+/g, '') : '';
   return axios.get(`${baseURL}/v1/schedule?id=${scheduleId}`).then(function(res) {
     if (res.status !== 200) throw new Error('bad response from server' + res.status);
     return res.data;
@@ -21,23 +21,23 @@ export function listEventService(scheduleId) {
 }
 
 export function removeScheduleService(scheduleId) {
-  scheduleId = scheduleId.replace(/['"]+/g, '');
-  return axios.get(`${baseURL}/v1/removeSchedule?id=${scheduleId}`).then(function(res) {
+  scheduleId = scheduleId ? scheduleId.replace(/['"]+/g, '') : '';
+  return axios.post(`${baseURL}/v1/removeSchedule`, { scheduleId }).then(function(res) {
     if (res.status !== 200) throw new Error('bad response from server' + res.status);
     return res.data;
   });
 }
 
 export function addScheduleService(personId, name) {
-  personId = personId.replace(/['"]+/g, '');
-  return axios.get(`${baseURL}/v1/addSchedule?personId=${personId}&name=${name}`).then(function(res) {
+  personId = personId ? personId.replace(/['"]+/g, '') : null;
+  return axios.post(`${baseURL}/v1/addSchedule`, { personId, name }).then(function(res) {
     if (res.status !== 200) throw new Error('bad response from server' + res.status);
     return res.data;
   });
 }
 
 export function removeEventService(scheduleId, itemId) {
-  scheduleId = scheduleId.replace(/['"]+/g, '');
+  scheduleId = scheduleId ? scheduleId.replace(/['"]+/g, '') : '';
   itemId = itemId.replace(/['"]+/g, '');
   const scheduleItem = { scheduleId, itemId };
   return axios.post(`${baseURL}/v1/removeScheduleItem`, scheduleItem).then(function(res) {
@@ -47,7 +47,7 @@ export function removeEventService(scheduleId, itemId) {
 }
 
 export function addEventService(scheduleId, name, time, description) {
-  scheduleId = scheduleId.replace(/['"]+/g, '');
+  scheduleId = scheduleId ? scheduleId.replace(/['"]+/g, '') : '';
   const scheduleItem = { scheduleId, name, time, description };
   return axios.post(`${baseURL}/v1/addScheduleItem`, scheduleItem).then(function(res) {
     if (res.status !== 200) throw new Error('bad response from server' + res.status);
@@ -56,7 +56,7 @@ export function addEventService(scheduleId, name, time, description) {
 }
 
 export function updateEventService(scheduleId, itemId, name, time, description) {
-  scheduleId = scheduleId.replace(/['"]+/g, '');
+  scheduleId = scheduleId ? scheduleId.replace(/['"]+/g, '') : '';
   const scheduleItem = {
     scheduleId,
     itemId,
