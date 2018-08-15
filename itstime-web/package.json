@@ -54,11 +54,22 @@
   "homepage": "https://itstime.mobi",
   "jest": {
     "testEnvironment": "node",
-    "roots": ["<rootDir>/tests/"],
-    "setupFiles": ["<rootDir>/tests/jest-setup.js"],
-    "coveragePathIgnorePatterns": ["/node_modules/", "model/apiService.js", "rootReducer.js"]
+    "roots": [
+      "<rootDir>/tests/"
+    ],
+    "setupFiles": [
+      "<rootDir>/tests/jest-setup.js"
+    ],
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "model/apiService.js",
+      "rootReducer.js"
+    ]
   },
   "lint-staged": {
-    "*.{js,json,css,md}": ["prettier --write", "git add"]
+    "*.{js,json,css,md}": [
+      "prettier --write",
+      "git add"
+    ]
   }
 }
