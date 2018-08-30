@@ -1,8 +1,11 @@
 import mongoose, { Schema } from 'mongoose';
 
 // Define schedule schema
-var scheduleSchema = new Schema({
-  scheduleName: String,
+const scheduleSchema = new Schema({
+  scheduleName: {
+    type: String,
+    required: true
+  },
   scheduleItems: [
     {
       name: String,

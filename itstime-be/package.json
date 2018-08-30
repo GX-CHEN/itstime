@@ -4,20 +4,30 @@
   "description": "test node and mongo backend for React Native",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --coverage",
     "build": "nodemon ./src --source-maps --out-dir dist",
     "start": "nodemon -- node_modules/babel-cli/bin/babel-node.js src/server.js",
     "populate": "node_modules/babel-cli/bin/babel-node.js src/populate.js"
   },
-  "author": "",
+  "jest": {
+    "testEnvironment": "node",
+    "roots": [
+      "<rootDir>/tests/"
+    ],
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ]
+  },
   "license": "ISC",
   "devDependencies": {
     "babel": "^6.23.0",
     "babel-cli": "^6.26.0",
     "babel-eslint": "^8.2.2",
+    "babel-jest": "^23.4.2",
     "babel-preset-env": "^1.7.0",
     "babel-preset-stage-0": "^6.24.1",
     "eslint": "^5.3.0",
+    "jest": "^23.5.0",
     "nodemon": "^1.18.3"
   },
   "dependencies": {
