@@ -1,7 +1,7 @@
 {
-  "name": "itstime-be",
+  "name": "itstime-server",
   "version": "1.0.0",
-  "description": "test node and mongo backend for React Native",
+  "description": "server side for itstime project",
   "main": "index.js",
   "scripts": {
     "test": "jest",
