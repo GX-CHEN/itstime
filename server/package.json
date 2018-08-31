@@ -4,7 +4,7 @@
   "description": "test node and mongo backend for React Native",
   "main": "index.js",
   "scripts": {
-    "test": "jest --coverage",
+    "test": "jest",
     "build": "nodemon ./src --source-maps --out-dir dist",
     "start": "nodemon -- node_modules/babel-cli/bin/babel-node.js src/server.js",
     "populate": "node_modules/babel-cli/bin/babel-node.js src/populate.js"
