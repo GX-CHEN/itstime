@@ -51,12 +51,12 @@ You can click on event on the calendar, and view details, or edit/delete it. You
 
 ### Install app dependencies
 
-```javascript
-// install global npm package which helps run the app
+```bash
+# install global npm package which helps run the app
 npm install -g nodemon
 npm install -g serve
 
-// install dependencies for both server and client side
+# install dependencies for both server and client side
 cd server
 npm install
 
@@ -66,14 +66,14 @@ npm install
 
 ### Run in local dev mode
 
-```javascript
-/** Assume you're in the root directory
-  * Go to server directory first, run server-side first
-  * Then go to client directory, run client-side
-  */
+```bash
+# Assume you're in the root directory
+
+# Go to server directory first, run server-side first
 cd server
 npm start
 
+# Then go to client directory, run client-side
 cd ../client
 npm install
 ```
