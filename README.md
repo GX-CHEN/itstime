@@ -36,9 +36,10 @@ Users are able to add, view, edit or delete schedules
 </p>
 <div style="clear: both;"></div>
 
-### Event list calendar view (of each schedule)
+### Event list (calendar) view, and event view
 
-Each Schedule have a list of events that can be viewed in calendar. Each event support view/add/edit/delete
+Each Schedule have a list of events, which can be viewed in a calendar.
+You can click on event on the calendar, and view details, or edit/delete it. You can also click the "plus" button on the bottom right of the calendar view to add a new event
 
 <p float="left">
 <img src="screenshots/events_table.jpg" alt="Event Table" width="260" />
@@ -46,13 +47,9 @@ Each Schedule have a list of events that can be viewed in calendar. Each event s
 <div style="clear: both;"></div>
 </p>
 
-### Event view
-
-You can click on event on the calendar, and view details, or edit/delete it. You can also click the "plus" button on the bottom right of the calendar view to add a new event
-
 ## How to build
 
-### In local
+### Install app dependencies
 
 ```javascript
 // install global npm package which helps run the app
@@ -67,7 +64,7 @@ cd ../client
 npm install
 ```
 
-### global command to host all the files
+### Run in local dev mode
 
 ```javascript
 /** Assume you're in the root directory
@@ -81,7 +78,12 @@ cd ../client
 npm install
 ```
 
-### to server the React file in production mode
+### Run in production mode
 
 - For the client side, production ready bundle file can be achieved by running `npm run build`, then you can serve it use the web-server of your choice (Nginx or Apache)
 - For the server side, there are few options to run it, and keep it running. I would recommend a tool called PM2 which can help manage Node processes very easily
+
+## Tech Stacks
+
+- Server-side: NodeJS, Express, MongoDB
+- Client-side: React, Redux, Ant Design
