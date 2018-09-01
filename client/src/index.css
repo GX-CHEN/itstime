@@ -55,6 +55,7 @@ button:disabled {
   display: none;
 }
 
+.ant-layout-sider,
 .ant-layout-sider-zero-width-trigger {
   z-index: 2;
 }
