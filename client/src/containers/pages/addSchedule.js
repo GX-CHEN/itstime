@@ -51,7 +51,7 @@ class FormView extends Component {
               {getFieldDecorator('name', {
                 initialValue: this.props.name,
                 rules: [{ required: true, message: 'Schedule Name is required!' }]
-              })(<Input placeholder="Schedule Name" />)}
+              })(<Input placeholder="Schedule Name" autoComplete="off" />)}
             </FormItem>
             <FormItem>
               <Button type="primary" htmlType="submit" style={{ width: '100%' }}>

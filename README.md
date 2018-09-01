@@ -10,7 +10,7 @@
 
 ## Demo website
 
-- https://itstime.mobi
+- https://itstime.life
 - Demo Account: test/test
 - You can also register an account, no email or personal info are required. Totally free and anonymous
 
