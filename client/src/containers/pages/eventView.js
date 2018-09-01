@@ -75,7 +75,7 @@ class FormView extends Component {
               {getFieldDecorator('name', {
                 initialValue: this.props.name,
                 rules: [{ required: true, message: 'Event Name is required!' }]
-              })(<Input placeholder="Event Name" />)}
+              })(<Input placeholder="Event Name" autoComplete="off" />)}
             </FormItem>
             <FormItem label="Start Time">
               {getFieldDecorator('time', {
@@ -87,7 +87,7 @@ class FormView extends Component {
               {getFieldDecorator('description', {
                 initialValue: this.props.description,
                 rules: [{ required: true, message: 'Event Name is required!' }]
-              })(<TextArea placeholder="Event Description" rows={3} />)}
+              })(<TextArea placeholder="Event Description" rows={3} autoComplete="off" />)}
             </FormItem>
             <FormItem>
               <Button type="primary" htmlType="submit" style={{ width: '100%' }}>
