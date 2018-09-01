@@ -52,7 +52,7 @@
     "eject": "react-scripts eject",
     "precommit": "lint-staged"
   },
-  "homepage": "https://itstime.mobi",
+  "homepage": "https://itstime.life",
   "jest": {
     "testEnvironment": "node",
     "roots": [
