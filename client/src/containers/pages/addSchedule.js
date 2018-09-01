@@ -3,7 +3,8 @@ import { push } from 'react-router-redux';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { createSchedule, deleteSchedule } from '../../action/schedule';
-import { Form, Button, Input, Divider } from 'antd';
+import { Form, Button, Input, Divider, Layout } from 'antd';
+import Sidebar from '../components/sidebar';
 import PropTypes from 'prop-types';
 
 const FormItem = Form.Item;
@@ -33,33 +34,40 @@ class FormView extends Component {
   render() {
     const { getFieldDecorator } = this.props.form;
     return (
-      <Form onSubmit={this.handleSubmit} className="schedule-view-form">
-        <Divider
-          style={{
-            fontSize: 22,
-            textAlign: 'center',
-            color: 'rgba(0, 0, 0, 0.65)',
-            fontWeight: 400
-          }}>
-          Add Schedule
-        </Divider>
-        <FormItem label="Schedule Name">
-          {getFieldDecorator('name', {
-            initialValue: this.props.name,
-            rules: [{ required: true, message: 'Schedule Name is required!' }]
-          })(<Input placeholder="Schedule Name" />)}
-        </FormItem>
-        <FormItem>
-          <Button type="primary" htmlType="submit" style={{ width: '100%' }}>
-            Submit
-          </Button>
-        </FormItem>
-        <FormItem>
-          <Button style={{ width: '100%', border: 'none', color: '#1890ff' }} onClick={() => this.goToScheduleList()}>
-            Cancel
-          </Button>
-        </FormItem>
-      </Form>
+      <Layout className="full-height">
+        <Sidebar changePage={this.props.changePage} />
+        <Layout>
+          <Form onSubmit={this.handleSubmit} className="schedule-view-form">
+            <Divider
+              style={{
+                fontSize: 22,
+                textAlign: 'center',
+                color: 'rgba(0, 0, 0, 0.65)',
+                fontWeight: 400
+              }}>
+              Add Schedule
+            </Divider>
+            <FormItem label="Schedule Name">
+              {getFieldDecorator('name', {
+                initialValue: this.props.name,
+                rules: [{ required: true, message: 'Schedule Name is required!' }]
+              })(<Input placeholder="Schedule Name" />)}
+            </FormItem>
+            <FormItem>
+              <Button type="primary" htmlType="submit" style={{ width: '100%' }}>
+                Submit
+              </Button>
+            </FormItem>
+            <FormItem>
+              <Button
+                style={{ width: '100%', border: 'none', color: '#1890ff' }}
+                onClick={() => this.goToScheduleList()}>
+                Cancel
+              </Button>
+            </FormItem>
+          </Form>
+        </Layout>
+      </Layout>
     );
   }
 }
