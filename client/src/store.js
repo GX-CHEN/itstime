@@ -4,14 +4,8 @@ import promiseMiddleware from 'redux-promise-middleware';
 import thunk from 'redux-thunk';
 import createHistory from 'history/createBrowserHistory';
 import rootReducer from './rootReducer';
-import ReactGA from 'react-ga';
 
-ReactGA.initialize('UA-123023367-1');
 export const history = createHistory();
-history.listen((location, action) => {
-  ReactGA.set({ page: location.pathname });
-  ReactGA.pageview(location.pathname);
-});
 
 const initialState = {};
 const enhancers = [];
