@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-// const baseURL = 'https://biteapie.com';
 // const baseURL = 'https://itstime.mobi';
 const baseURL = 'http://localhost:3001';
+
 // schedule part
 export function listScheduleService(id) {
   const personId = id ? id.replace(/['"]+/g, '') : '';

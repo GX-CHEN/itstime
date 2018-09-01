@@ -28,6 +28,7 @@ class ScheduleList extends React.Component {
       scheduleItems.forEach(element => {
         desc = `${desc}${element.name}, `;
       });
+      desc = desc ? desc.slice(0, -2) : desc;
       return { _id, name: scheduleName, desc };
     }
 
@@ -142,6 +143,7 @@ ScheduleList.propTypes = {
   changePage: PropTypes.func,
   actionStatus: PropTypes.string,
   listSchedule: PropTypes.func,
+  scheduleList: PropTypes.array,
   deleteSchedule: PropTypes.func
 };
 
