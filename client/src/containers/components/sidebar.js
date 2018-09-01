@@ -34,21 +34,17 @@ class Sidebar extends React.Component {
       <Sider breakpoint="lg" collapsedWidth="0">
         <div className="logo">ITS TIME</div>
         <Menu theme="dark" mode="inline" defaultSelectedKeys={['4']}>
-          <Menu.Item key="1">
+          <Menu.Item key="1" onClick={this.routeToScheduleList}>
             <Icon type="layout" />
-            <span className="nav-text" onClick={this.routeToScheduleList}>
-              Schedule List
-            </span>
+            <span className="nav-text">Schedule List</span>
           </Menu.Item>
-          <Menu.Item key="2">
+          <Menu.Item key="2" onClick={this.routeToAddSchedule}>
             <Icon type="plus-circle-o" />
-            <span className="nav-text" onClick={this.routeToAddSchedule}>
-              Add Schedule
-            </span>
+            <span className="nav-text">Add Schedule</span>
           </Menu.Item>
-          <Menu.Item key="3" style={{ position: 'absolute', bottom: 25 }}>
+          <Menu.Item key="3" style={{ position: 'absolute', bottom: 25 }} onClick={this.handleLogout}>
             <Icon type="poweroff" style={{ color: 'red' }} />
-            <span className="nav-text" style={{ color: 'red', fontSize: 18 }} onClick={this.handleLogout}>
+            <span className="nav-text" style={{ color: 'red', fontSize: 18 }}>
               Logout
             </span>
           </Menu.Item>

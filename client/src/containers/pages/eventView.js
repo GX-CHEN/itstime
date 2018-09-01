@@ -3,8 +3,9 @@ import { push } from 'react-router-redux';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { addEvent, removeEvent, updateEvent } from '../../action/schedule';
-import { Form, TimePicker, Button, Input, Divider } from 'antd';
+import { Form, TimePicker, Button, Input, Divider, Layout } from 'antd';
 import moment from 'moment';
+import Sidebar from '../components/sidebar';
 import { confirmationModal } from '../components/confirmationModal';
 import PropTypes from 'prop-types';
 
@@ -57,50 +58,55 @@ class FormView extends Component {
     const { getFieldDecorator } = this.props.form;
     const timeFormat = 'HH:mm';
     return (
-      <Form onSubmit={this.handleSubmit} className="event-view-form">
-        <Divider
-          style={{
-            fontSize: 22,
-            textAlign: 'center',
-            color: 'rgba(0, 0, 0, 0.65)',
-            fontWeight: 400
-          }}>
-          Selected Event
-        </Divider>
-        <FormItem label="Event Name">
-          {getFieldDecorator('name', {
-            initialValue: this.props.name,
-            rules: [{ required: true, message: 'Event Name is required!' }]
-          })(<Input placeholder="Event Name" />)}
-        </FormItem>
-        <FormItem label="Start Time">
-          {getFieldDecorator('time', {
-            initialValue: moment(this.props.time || '08:00', timeFormat),
-            rules: [{ type: 'object', required: true, message: 'Please select time!' }]
-          })(<TimePicker style={{ width: '100%' }} format={timeFormat} />)}
-        </FormItem>
-        <FormItem label="Event Description">
-          {getFieldDecorator('description', {
-            initialValue: this.props.description,
-            rules: [{ required: true, message: 'Event Name is required!' }]
-          })(<TextArea placeholder="Event Description" rows={3} />)}
-        </FormItem>
-        <FormItem>
-          <Button type="primary" htmlType="submit" style={{ width: '100%' }}>
-            Submit
-          </Button>
-        </FormItem>
-        <FormItem>
-          <Button type="danger" style={{ width: '100%' }} onClick={() => this.deleteEvent()}>
-            Delete
-          </Button>
-        </FormItem>
-        <FormItem>
-          <Button style={{ width: '100%', border: 'none', color: '#1890ff' }} onClick={() => this.goToCalendar()}>
-            Cancel
-          </Button>
-        </FormItem>
-      </Form>
+      <Layout className="full-height">
+        <Sidebar changePage={this.props.changePage} />
+        <Layout>
+          <Form onSubmit={this.handleSubmit} className="event-view-form">
+            <Divider
+              style={{
+                fontSize: 22,
+                textAlign: 'center',
+                color: 'rgba(0, 0, 0, 0.65)',
+                fontWeight: 400
+              }}>
+              Selected Event
+            </Divider>
+            <FormItem label="Event Name">
+              {getFieldDecorator('name', {
+                initialValue: this.props.name,
+                rules: [{ required: true, message: 'Event Name is required!' }]
+              })(<Input placeholder="Event Name" />)}
+            </FormItem>
+            <FormItem label="Start Time">
+              {getFieldDecorator('time', {
+                initialValue: moment(this.props.time || '08:00', timeFormat),
+                rules: [{ type: 'object', required: true, message: 'Please select time!' }]
+              })(<TimePicker style={{ width: '100%' }} format={timeFormat} />)}
+            </FormItem>
+            <FormItem label="Event Description">
+              {getFieldDecorator('description', {
+                initialValue: this.props.description,
+                rules: [{ required: true, message: 'Event Name is required!' }]
+              })(<TextArea placeholder="Event Description" rows={3} />)}
+            </FormItem>
+            <FormItem>
+              <Button type="primary" htmlType="submit" style={{ width: '100%' }}>
+                Submit
+              </Button>
+            </FormItem>
+            <FormItem>
+              <Button type="danger" style={{ width: '100%' }} onClick={() => this.deleteEvent()}>
+                Delete
+              </Button>
+            </FormItem>
+            <FormItem>
+              <Button style={{ width: '100%', border: 'none', color: '#1890ff' }} onClick={() => this.goToCalendar()}>
+                Cancel
+              </Button>
+            </FormItem>
+          </Form>
+        </Layout>
+      </Layout>
     );
   }
 }
