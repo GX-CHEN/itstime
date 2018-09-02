@@ -4,21 +4,21 @@
 
 ## What is this?
 
-- An web application designed to manage daily plan and schedule.
-- UI is optimized for both computer browser and mobile devices. Support add "App Icon" on both Android and iOS devices
-- A few recommended schedules will be pre-populated when a new user is registered and login. These schedules are fully customizable
+- A web application designed to manage daily plan and schedule, to maintain healthy life style.
+- UI is optimized for both computer browser and mobile devices. Support add "App Icon" on Android or iOS devices.
+- A few recommended schedules will be pre-populated when a new user is registered and login. These schedules are fully customizable.
 
 ## Demo website
 
 - https://itstime.life
 - Demo Account: test/test
-- You can also register an account, no email or personal info are required. Totally free and anonymous
+- You can also register an account, no email or personal info are required, totally free and anonymous.
 
 ## What can it do?
 
 ### Schedule list view
 
-After login, user will see all available schedule list (each new user will have 4 default ones).
+After login, user will see all available schedule list (each new user will have 4 pre-populated default ones).
 
 <p float="left">
 <img src="screenshots/schedule_list.jpg" alt="Schedule List"  width="260"/>
@@ -38,8 +38,8 @@ Users are able to add, view, edit or delete schedules
 
 ### Event list (calendar) view, and event view
 
-Each Schedule have a list of events, which can be viewed in a calendar.
-You can click on event on the calendar, and view details, or edit/delete it. You can also click the "plus" button on the bottom right of the calendar view to add a new event
+Each schedule have a list of events, which can be viewed in a calendar.
+You can click on any event on the calendar, to view details, or edit/delete it. You can also click the "plus" button on the bottom right of the calendar view to add a new event.
 
 <p float="left">
 <img src="screenshots/events_table.jpg" alt="Event Table" width="260" />
