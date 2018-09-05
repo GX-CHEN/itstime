@@ -85,8 +85,7 @@ class FormView extends Component {
             </FormItem>
             <FormItem label="Event Description">
               {getFieldDecorator('description', {
-                initialValue: this.props.description,
-                rules: [{ required: true, message: 'Event Name is required!' }]
+                initialValue: this.props.description
               })(<TextArea placeholder="Event Description" rows={3} autoComplete="off" />)}
             </FormItem>
             <FormItem>
