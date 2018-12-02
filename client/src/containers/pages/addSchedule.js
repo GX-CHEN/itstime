@@ -21,9 +21,9 @@ class FormView extends Component {
       const values = {
         ...fieldsValue
       };
-      const localStorageUserId = localStorage.getItem('userId');
+      const sessionStorageUserId = sessionStorage.getItem('userId');
 
-      this.props.createSchedule(localStorageUserId, values['name']);
+      this.props.createSchedule(sessionStorageUserId, values['name']);
     });
   };
 
@@ -98,7 +98,7 @@ class AddSchedule extends Component {
   }
 
   render() {
-    if (!localStorage.getItem('userId')) {
+    if (!sessionStorage.getItem('userId')) {
       this.props.changePage('/');
     }
 

@@ -26,12 +26,12 @@ class FormView extends Component {
         ...fieldsValue,
         time: fieldsValue['time'].format('HH:mm')
       };
-      const localStorageScheduleId = localStorage.getItem('scheduleId');
+      const sessionStorageScheduleId = sessionStorage.getItem('scheduleId');
       if (this.props.actionType === 'add') {
-        this.props.addEvent(localStorageScheduleId, values['name'], values['time'], values['description']);
+        this.props.addEvent(sessionStorageScheduleId, values['name'], values['time'], values['description']);
       } else {
         this.props.updateEvent(
-          localStorageScheduleId,
+          sessionStorageScheduleId,
           this.props.eventId,
           values['name'],
           values['time'],
@@ -49,7 +49,7 @@ class FormView extends Component {
     confirmationModal({
       content: 'Are you sure you wish to delete this schedule?',
       onOk: () => {
-        this.props.removeEvent(localStorage.getItem('scheduleId'), this.props.eventId);
+        this.props.removeEvent(sessionStorage.getItem('scheduleId'), this.props.eventId);
       }
     });
   };
@@ -165,7 +165,7 @@ class EventView extends Component {
   }
 
   render() {
-    if (!localStorage.getItem('userId')) {
+    if (!sessionStorage.getItem('userId')) {
       this.props.changePage('/');
     }
 
