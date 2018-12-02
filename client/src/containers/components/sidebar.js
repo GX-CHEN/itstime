@@ -19,7 +19,7 @@ class Sidebar extends React.Component {
       content: 'Are you sure to logout?',
       onOk: () => {
         this.props.logout();
-        localStorage.setItem('userId', '');
+        sessionStorage.setItem('userId', '');
         this.props.changePage('/');
       }
     });

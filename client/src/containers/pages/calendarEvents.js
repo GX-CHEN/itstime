@@ -24,12 +24,12 @@ class CalendarEvents extends React.Component {
   }
 
   componentDidMount() {
-    const localStorageScheduleId = localStorage.getItem('scheduleId');
+    const sessionStorageScheduleId = sessionStorage.getItem('scheduleId');
     const { location, listEvent } = this.props;
     if (location.state && location.state.scheduleId) {
       listEvent(location.state.scheduleId);
-    } else if (localStorageScheduleId) {
-      listEvent(localStorageScheduleId);
+    } else if (sessionStorageScheduleId) {
+      listEvent(sessionStorageScheduleId);
     }
   }
 
@@ -56,7 +56,7 @@ class CalendarEvents extends React.Component {
   };
 
   render() {
-    if (!localStorage.getItem('userId')) {
+    if (!sessionStorage.getItem('userId')) {
       this.props.changePage('/');
     }
 

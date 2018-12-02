@@ -92,7 +92,7 @@ class Login extends React.Component {
       if (includes(userId, 'fail')) {
         this.failure(userId);
       } else {
-        localStorage.setItem('userId', userId);
+        sessionStorage.setItem('userId', userId);
         this.props.changePage('/scheduleList', { userId });
       }
     }

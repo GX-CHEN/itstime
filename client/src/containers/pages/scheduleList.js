@@ -44,19 +44,19 @@ class ScheduleList extends React.Component {
   }
 
   fetchScheduleList = () => {
-    const localStorageUserId = localStorage.getItem('userId');
+    const sessionStorageUserId = sessionStorage.getItem('userId');
     const { location, listSchedule } = this.props;
     if (location.state && location.state.userId) {
       listSchedule(location.state.userId);
-    } else if (localStorageUserId) {
-      listSchedule(localStorageUserId);
+    } else if (sessionStorageUserId) {
+      listSchedule(sessionStorageUserId);
     } else {
       this.props.changePage('/');
     }
   };
 
   goToAgenda = id => {
-    localStorage.setItem('scheduleId', id);
+    sessionStorage.setItem('scheduleId', id);
     this.props.changePage('/calendarEvents', { scheduleId: id });
   };
 
@@ -70,7 +70,7 @@ class ScheduleList extends React.Component {
   };
 
   render() {
-    if (!localStorage.getItem('userId')) {
+    if (!sessionStorage.getItem('userId')) {
       this.props.changePage('/');
     }
 
